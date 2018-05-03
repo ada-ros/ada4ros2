@@ -1,0 +1,5 @@
+repositories:
+  ros2/rclada:
+    type: git
+    url: https://github.com/ada-ros/rclada.git
+    version: master
