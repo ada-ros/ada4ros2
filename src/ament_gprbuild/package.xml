@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>ament_gprbuild</name>
+  <version>0.1.0</version>
+  <description>gprbuild for ament</description>
+  <maintainer email="amosteo@unizar.es">Alejandro R. Mosteo</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>gprbuild</buildtool_depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+
+</package>
+

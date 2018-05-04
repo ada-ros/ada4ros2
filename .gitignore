@@ -1,0 +1,7 @@
+build
+install
+lib
+obj
+
+*.ali
+*.o
