@@ -1,5 +1,7 @@
 build
+build_isolated
 install
+install_isolated
 lib
 obj
 
