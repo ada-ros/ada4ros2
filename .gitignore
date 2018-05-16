@@ -1,5 +1,7 @@
 build
 build_isolated
+cmake-build-*
+.idea
 install
 install_isolated
 lib
