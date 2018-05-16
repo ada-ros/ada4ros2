@@ -41,12 +41,19 @@ endif()
 # Find all headers in rcl and generate automatic ada headers
 file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
 message(STATUS "Using headers ${rcl_headers}")
-execute_process(COMMAND pwd)
 
-file(MAKE_DIRECTORY gen)
-execute_process(
-        COMMAND g++ -fdump-ada-spec -C -fada-spec-parent=rclx ${rcl_headers}
+add_custom_target(rclada_create_folder_for_generated_headers
+        ALL
+        ${CMAKE_COMMAND} -E make_directory gen)
+
+add_custom_target(rclada_generate_headers
+        ALL
+        COMMAND g++ -I${rcl_INCLUDE_DIRS} -fdump-ada-spec -C -fada-spec-parent=rclx ${rcl_headers}
         WORKING_DIRECTORY gen)
+
+add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_headers)
+
+#install(DIRECTORY DESTINATION ${PROJECT_NAME}/gen)
 
 #ament_target_dependencies(${PROJECT_NAME} "rcl")
 
