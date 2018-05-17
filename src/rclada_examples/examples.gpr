@@ -1,3 +1,5 @@
+with "rcl";
+
 project Examples is
 
    for Source_Dirs use ("src");
