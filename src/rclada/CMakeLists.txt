@@ -68,6 +68,7 @@ add_custom_target(rclada_create_folder_for_generated_headers
         ALL
         ${CMAKE_COMMAND} -E make_directory gen)
 
+# Actually generate the low-level binding during build
 add_custom_target(rclada_generate_headers
         ALL
         # Note that later standards generate broken bindings at present (g++ v7.3)
@@ -83,13 +84,21 @@ add_custom_target(rclada_generate_headers
 
 add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_headers)
 
+# Compile high-level binding
+add_custom_target(rclada_compile
+        ALL
+        COMMAND gprbuild -p -j0 -XBUILD_PREFIX=${PROJECT_BINARY_DIR}
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_dependencies(rclada_compile rclada_generate_headers)
+
 #################################################
 # Exported configurations or whatever
 
 set(cmake_version_file ${PROJECT_NAME}ConfigVersion.cmake)
 configure_file(
         ${cmake_version_file}.in
-        ${CMAKE_CURRENT_BINARY_DIR}/${cmake_version_file})
+        ${PROJECT_BINARY_DIR}/${cmake_version_file})
 
 set(cmake_conf_file ${PROJECT_NAME}Config.cmake)
 configure_file(

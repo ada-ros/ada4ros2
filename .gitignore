@@ -1,6 +1,9 @@
+bin
 build
 build_isolated
 cmake-build-*
+gnatinspect*
+gpsauto*
 .idea
 install
 install_isolated
@@ -8,4 +11,5 @@ lib
 obj
 
 *.ali
+*-loc.xml
 *.o

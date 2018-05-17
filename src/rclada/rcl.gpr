@@ -4,8 +4,11 @@ project Rcl is
                         "gen",
                         "src",
                         "src/support");
-   for Object_Dir use "obj";
-   for Exec_Dir use "bin";
+
+   Build_Prefix := external ("BUILD_PREFIX", ".");
+
+   for Object_Dir use Build_Prefix & "/obj";
+   for Exec_Dir   use Build_Prefix & "/bin";
 
    package Builder is
       for Switches ("ada") use ("-j0", "-g");
