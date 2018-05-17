@@ -21,6 +21,9 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rcl REQUIRED)
+find_package(rcutils REQUIRED)
+find_package(rmw REQUIRED)
+#find_package(rcutils REQUIRED)
 
 ###########################################################################
 
@@ -40,7 +43,24 @@ endif()
 
 # Find all headers in rcl and generate automatic ada headers
 file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
-message(STATUS "Using headers ${rcl_headers}")
+message(STATUS "Using RCL headers ${rcl_headers}")
+
+# For some reason rmw folders are duplicated:
+list(GET rmw_INCLUDE_DIRS 0 rmw_header_dir)
+
+#file(GLOB rcutils_headers "${rcutils_INCLUDE_DIRS}/rcutils/*.h")
+#message(STATUS "Using RCUTILS headers ${rcutils_headers}")
+
+# Extra headers that we need
+set(extra_headers
+        ${rcutils_INCLUDE_DIRS}/rcutils/allocator.h
+        ${rcutils_INCLUDE_DIRS}/rcutils/error_handling.h
+        ${rcutils_INCLUDE_DIRS}/rcutils/time.h
+        ${rcutils_INCLUDE_DIRS}/rcutils/types/string_array.h
+        ${rcutils_INCLUDE_DIRS}/rcutils/types/string_map.h
+        ${rmw_header_dir}/rmw/names_and_types.h
+        ${rmw_header_dir}/rmw/types.h)
+message(STATUS "Using EXTRA headers ${extra_headers}")
 
 add_custom_target(rclada_create_folder_for_generated_headers
         ALL
@@ -48,7 +68,15 @@ add_custom_target(rclada_create_folder_for_generated_headers
 
 add_custom_target(rclada_generate_headers
         ALL
-        COMMAND g++ -I${rcl_INCLUDE_DIRS} -fdump-ada-spec -C -fada-spec-parent=rclx ${rcl_headers}
+        # Note that later standards generate broken bindings at present (g++ v7.3)
+        COMMAND g++ -std=c++03
+          -I${rcl_INCLUDE_DIRS}
+          -fdump-ada-spec-slim
+          -C
+          -fada-spec-parent=rclx
+          ${extra_headers}
+          ${rcl_headers}
+#          ${rcutils_headers}
         WORKING_DIRECTORY gen)
 
 add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_headers)

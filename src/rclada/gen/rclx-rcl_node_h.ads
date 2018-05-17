@@ -11,7 +11,6 @@ with Interfaces.C.Strings;
 with rclx.rcl_types_h;
 limited with rclx.rmw_types_h;
 with rclx.x86_64_linux_gnu_bits_stdint_uintn_h;
-limited with rclx.rcl_guard_condition_h;
 
 package rclx.rcl_node_h is
 
@@ -27,6 +26,8 @@ package rclx.rcl_node_h is
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
   --/ Constant which indicates that the default domain id should be used.
+   --  skipped empty struct rcl_guard_condition_t
+
    --  skipped empty struct rcl_node_impl_t
 
   --/ Structure which encapsulates a ROS Node.
@@ -464,7 +465,7 @@ package rclx.rcl_node_h is
   -- * \return rcl guard condition handle if successful, otherwise `NULL`
   --  
 
-   function rcl_node_get_graph_guard_condition (node : access constant rcl_node_t) return access constant rclx.rcl_guard_condition_h.rcl_guard_condition_t;  -- /home/jano/local/ros2/ros2_rolling/install/include/rcl/node.h:490
+   function rcl_node_get_graph_guard_condition (node : access constant rcl_node_t) return System.Address;  -- /home/jano/local/ros2/ros2_rolling/install/include/rcl/node.h:490
    pragma Import (C, rcl_node_get_graph_guard_condition, "rcl_node_get_graph_guard_condition");
 
   --/ Return the logger name of the node.
