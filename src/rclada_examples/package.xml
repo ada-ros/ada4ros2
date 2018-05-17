@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>rclada</name>
+  <name>rclada_examples</name>
   <version>0.1.0</version>
-  <description>Ada ROS2 Client Library</description>
+  <description>rclada example nodes in Ada</description>
   <maintainer email="amosteo@unizar.es">Alejandro R. Mosteo</maintainer>
   <license>GPL3</license>
 
   <buildtool_depend>cmake</buildtool_depend>
 
-  <build_depend>rcl</build_depend>
-  <build_depend>rcutils</build_depend>
-  <build_depend>rmw</build_depend>
+  <build_depend>rclada</build_depend>
 
   <export>
     <build_type>cmake</build_type>

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(rclada)
 
+set(${PROJECT_NAME}_VERSION 0.1.0)
+
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
@@ -19,7 +21,7 @@ if(BUILD_TESTING)
   # Silence a warning (?)
 endif()
 
-find_package(ament_cmake REQUIRED)
+#find_package(ament_cmake REQUIRED)
 find_package(rcl REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rmw REQUIRED)
@@ -80,6 +82,30 @@ add_custom_target(rclada_generate_headers
         WORKING_DIRECTORY gen)
 
 add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_headers)
+
+#################################################
+# Exported configurations or whatever
+
+set(cmake_version_file ${PROJECT_NAME}ConfigVersion.cmake)
+configure_file(
+        ${cmake_version_file}.in
+        ${CMAKE_CURRENT_BINARY_DIR}/${cmake_version_file})
+
+set(cmake_conf_file ${PROJECT_NAME}Config.cmake)
+configure_file(
+        ${cmake_conf_file}.in
+        ${PROJECT_BINARY_DIR}/${cmake_conf_file})
+
+install(FILES
+        ${PROJECT_BINARY_DIR}/${cmake_conf_file}
+        ${PROJECT_BINARY_DIR}/${cmake_version_file}
+        DESTINATION share/${PROJECT_NAME}/cmake)
+
+# Make this package findable
+export(PACKAGE ${PROJECT_NAME})
+install(FILES package.xml DESTINATION share/${PROJECT_NAME})
+
+#message("XXXXXXX ${CONF_INCLUDE_DIRS}")
 
 #install(DIRECTORY DESTINATION ${PROJECT_NAME}/gen)
 

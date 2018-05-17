@@ -7,7 +7,7 @@
 set(rclada_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("${rclada_DIR}/export_rclada.cmake")
+# include("${rclada_DIR}/export_rclada.cmake")
 
 # These are IMPORTED targets created by rcladaTargets.cmake
 
