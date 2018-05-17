@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
-project(rclada)
+project(rclada_examples VERSION 0.1.0 LANGUAGES C)
+
+message(" ")
+message("${PROJECT_NAME} version ${PROJECT_VERSION}")
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -23,5 +26,15 @@ find_package(rclada REQUIRED)
 
 ###########################################################################
 
-export(PACKAGE ${PROJECT_NAME})
+add_ada_executable(listener examples.gpr bin/listener)
+
+###########################################################################
+
+#export(PACKAGE ${PROJECT_NAME})
 install(FILES package.xml DESTINATION share/${PROJECT_NAME})
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#  message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()

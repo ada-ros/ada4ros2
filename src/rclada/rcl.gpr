@@ -1,14 +1,18 @@
-project Rcl is
+library project Rcl is
+
+   for Library_Name use "rclada";
+   for Library_Kind use "static";
 
    for Source_Dirs use ("src/overrides", -- must go in front of gen
                         "gen",
                         "src",
                         "src/support");
 
-   Build_Prefix := external ("BUILD_PREFIX", ".");
+   Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
 
-   for Object_Dir use Build_Prefix & "/obj";
-   for Exec_Dir   use Build_Prefix & "/bin";
+   for Object_Dir  use Build_Prefix & "/obj";
+   for Exec_Dir    use Build_Prefix & "/bin";
+   for Library_Dir use Build_Prefix & "/lib";
 
    package Builder is
       for Switches ("ada") use ("-j0", "-g");
@@ -28,8 +32,8 @@ project Rcl is
       for Switches ("ada") use ("-Es");
    end Binder;
 
-   package Linker is
-      for Switches ("ada") use ("-g");
-   end Linker;
+--     package Linker is
+--        for Switches ("ada") use ("-g");
+--     end Linker;
 
 end Rcl;

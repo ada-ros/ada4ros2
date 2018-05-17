@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
-project(rclada)
+project(rclada VERSION 0.1.0 LANGUAGES NONE)
 
-set(${PROJECT_NAME}_VERSION 0.1.0)
+message(" ")
+message("${PROJECT_NAME} version ${PROJECT_VERSION}")
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -85,15 +86,29 @@ add_custom_target(rclada_generate_headers
 add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_headers)
 
 # Compile high-level binding
-add_custom_target(rclada_compile
+add_custom_target(rclada_build
         ALL
-        COMMAND gprbuild -p -j0 -XBUILD_PREFIX=${PROJECT_BINARY_DIR}
+        COMMAND gprbuild
+                    -p -j0
+                    -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}/gprbuild
+        COMMAND gprinstall
+                    -m -p -P rcl.gpr
+                    -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}/gprbuild
+                    --prefix=${PROJECT_BINARY_DIR}/gprinstall
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
-add_dependencies(rclada_compile rclada_generate_headers)
+add_dependencies(rclada_build rclada_generate_headers)
+
+#################################################
+# Install things and prepare export information
+
+set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/gprinstall/share/gpr)
+set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
 
 #################################################
 # Exported configurations or whatever
+
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
 
 set(cmake_version_file ${PROJECT_NAME}ConfigVersion.cmake)
 configure_file(
@@ -112,7 +127,10 @@ install(FILES
 
 # Make this package findable
 export(PACKAGE ${PROJECT_NAME})
+#export(TARGETS ${PROJECT_NAME} FILE export_${PROJECT_NAME}.cmake)
+
 install(FILES package.xml DESTINATION share/${PROJECT_NAME})
+install(FILES cmake/rclada_project.cmake DESTINATION ${PROJECT_BINARY_DIR})
 
 #message("XXXXXXX ${CONF_INCLUDE_DIRS}")
 
