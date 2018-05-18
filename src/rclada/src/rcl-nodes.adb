@@ -1,3 +1,5 @@
+with Ada.Exceptions;
+
 package body RCL.Nodes is
 
    use Rcl_Node_H;
@@ -13,12 +15,17 @@ package body RCL.Nodes is
       pragma Unreferenced (Opt);
       Cname : C_String := To_C (Name);
       Cns   : C_String := To_C (Namespace);
+
+      Opts  : aliased constant Rcl_Node_Options_T :=
+                Rcl_Node_Get_Default_Options;
    begin
       return N : Node do
+         N.Impl := Rcl_Get_Zero_Initialized_Node;
+
          Check (Rcl_Node_Init (N.Impl'Access,
                 Cname.To_Ptr,
                 Cns.To_Ptr,
-                null));
+                Opts'Access));
       end return;
    end Init;
 
@@ -34,6 +41,10 @@ package body RCL.Nodes is
          null;
          --  Log attempt at finalizing finalized node
       end if;
+   exception
+      when E : others =>
+         Put_Line ("Exception while finalizing node:");
+         Put_Line (Ada.Exceptions.Exception_Information (E));
    end Finalize;
 
 end RCL.Nodes;

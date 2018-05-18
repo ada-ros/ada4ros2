@@ -1,8 +1,12 @@
+pragma Warnings (Off);
+with Ada.Text_Io; use Ada.Text_IO;
+pragma Warnings (On);
+
 with Ada.Unchecked_Conversion; -- Uh oh...
 
 with Interfaces.C.Strings;
 
-with RCLx; pragma Unreferenced (Rclx);
+with RCLx; pragma Unreferenced (Rclx); 
 with RCLx.Rcl_Types_H;
 
 package RCL is

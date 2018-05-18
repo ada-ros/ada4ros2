@@ -1,0 +1,6 @@
+library project Librcutils is
+   For externally_built use "true";
+   For library_dir use "/home/jano/local/ros2/ros2_rolling/install/lib";
+   For library_name use "rcutils";
+   For library_kind use "dynamic";
+end Librcutils;

@@ -1,10 +1,9 @@
 aggregate project Rclada_Project is
 
-  for Project_Path use ("src/rclada");
+   for Project_Path use ("src/rclada",
+                         "src/rclada/dev");
 
-  for Project_Files use (
-     "src/rclada/rcl.gpr",
-     "src/rclada_examples/examples.gpr"
-  );
+   for Project_Files use ("src/rclada/rcl.gpr",
+                          "src/rclada_examples/examples.gpr");
 
 end Rclada_Project;

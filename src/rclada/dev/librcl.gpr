@@ -1,0 +1,8 @@
+--  This hardcoded version is only used during development
+
+library project LibRCL is
+   For externally_built use "true";
+   For library_dir use "/home/jano/local/ros2/ros2_rolling/install/lib";
+   For library_name use "rcl";
+   For library_kind use "dynamic";
+end LibRCL;

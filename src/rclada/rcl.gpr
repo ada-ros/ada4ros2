@@ -1,4 +1,6 @@
+with "librcutils";
 with "librcl"; -- The C rcl lib, librcl.so
+--  These withed only for their linking
 
 library project Rcl is
 

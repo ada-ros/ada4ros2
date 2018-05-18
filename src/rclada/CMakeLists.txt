@@ -57,11 +57,16 @@ set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/gprinstall/share/gpr)
 set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
 get_filename_component(ROS2_INSTALL ${rcl_INCLUDE_DIRS} DIRECTORY)
 
-# Install the project file that we'll need for users of our rcl.gpr lib
+# Install the project files that we'll need for users of our rcl.gpr lib
 file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/)
-configure_file(
-        ${PROJECT_SOURCE_DIR}/support/librcl.gpr.in
-        ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/librcl.gpr)
+
+set(NEEDED_LIBS rcl rcutils)
+
+foreach(EXT_LIB_NAME ${NEEDED_LIBS})
+  configure_file(
+          ${PROJECT_SOURCE_DIR}/support/external_lib.gpr.in
+          ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/lib${EXT_LIB_NAME}.gpr)
+endforeach()
 
 # Find all headers in rcl and generate automatic ada headers
 file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
