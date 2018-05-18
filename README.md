@@ -41,10 +41,10 @@ This project is done with the support of the following entities:
 * The Robotics, Perception and Real-Time group, RoPeRT, http://robots.unizar.es
 * The Defense University Center of Zaragoza, CUD-Z, http://cud.unizar.es
 
-<center>
+<p align="center">
   
 <a href="https://www.adacore.com/community"><img src="http://beta.electronicdesign.com/sites/electronicdesign.com/files/Adacore_Logo_Cropped.jpg" height="66"></a>
 <a href="http://robots.unizar.es"><img src="http://robots.unizar.es/wp/wp-content/themes/YellowMagazine/images/logo.png" height="66"></a>
 <a href=" http://cud.unizar.es"><img src="http://cud.unizar.es/sites/default/files/imagenes/CUDlogolargo_alta.jpg" height="66"></a>
 
-</center>
+</p>
