@@ -6,10 +6,10 @@ This repository is actually a ROS2 workspace. It can be checked out directly and
 ## Instructions
 
 1. Follow the official instructions to install ROS2. This project has been tested using the "[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" way.
-- Clone this repository with submodules: `$ git clone --recurse-submodules`.
-- Enter this repository root folder and issue `$ ament build`
-- Source the ./install/local_setup.bash script (or the one right for you).
-- Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
+1. Clone this repository with submodules: `$ git clone --recurse-submodules`.
+1. Enter this repository root folder and issue `$ ament build`
+1. Source the ./install/local_setup.bash script (or the one right for you).
+1. Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
 
 ## Creating Ada nodes
 
@@ -24,7 +24,7 @@ The GPR project file is named `rcl.gpr`, that you have to with on your own proje
 There are two hierarchies of Ada packages in the Ada RCL binding:
 
 1. `RCL.*` packages form the high-level, manually curated binding. It is currently being completed.
--  `RCLx.*` is the automatically generated binding (with `g++ -fdump-ada-spec`). It is not intended for direct use but it should be complete if something is still missing in the high-level binding.
+1. `RCLx.*` is the automatically generated binding (with `g++ -fdump-ada-spec`). It is not intended for direct use but it should be complete if something is still missing in the high-level binding.
 
 ## Extras
 
