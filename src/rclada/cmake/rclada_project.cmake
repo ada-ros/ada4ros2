@@ -17,6 +17,9 @@ function(add_ada_executable TARGET GPRFILE OUTFILE)
     #   one inconditionally and another as dependency of the fake build.
     # This is a negligible penalty since the Ada build detects nothing has changed.
 
+    # Arguably ExternalProject_Add would be more appropriate, but in this case
+    #   we need to stay within CMake "actual" targets so ros2 adds them as executables.
+
     add_executable(${TARGET} ${rclada_SUPPORT_DIR}/rclada_fake_target.c)
 
     add_custom_target(
@@ -40,3 +43,13 @@ function(add_ada_executable TARGET GPRFILE OUTFILE)
     install(TARGETS ${TARGET} DESTINATION lib/${PROJECT_NAME}/)
 
 endfunction(add_ada_executable)
+
+function(add_ada_library)
+    # Build and install an Ada library
+    # Both for dependent Ada and C/C++ projects
+    # In the C/C++ the actual built path is propagated
+    # For the Ada case, all libraries are installed inside rclada build folder
+    # This is ugly but there's no way without much uglifying client projects,
+    #   since each one has its own isolated CMake environment
+    # Or perhaps this is doable hiding ugliness of cmake files here? Must think
+endfunction(add_ada_library)
