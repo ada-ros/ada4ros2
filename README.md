@@ -42,5 +42,5 @@ This project is done with the support of the following entities:
 * The Defense University Center of Zaragoza, CUD-Z, [http://cud.unizar.es]
 
 <center>
-![AdaCore logo](https://www.adacore.com/uploads/logos/logos-adacore.png | height=256)
+![AdaCore logo](https://www.adacore.com/uploads/logos/logos-adacore.png)
 </center>
