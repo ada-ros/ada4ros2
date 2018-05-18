@@ -1,3 +1,5 @@
+with "librcl"; -- The C rcl lib, librcl.so
+
 library project Rcl is
 
    for Library_Name use "rclada";
@@ -31,9 +33,5 @@ library project Rcl is
    package Binder is
       for Switches ("ada") use ("-Es");
    end Binder;
-
---     package Linker is
---        for Switches ("ada") use ("-g");
---     end Linker;
 
 end Rcl;

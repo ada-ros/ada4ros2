@@ -1,0 +1,6 @@
+library project LibRCL is
+   For externally_built use "true";
+   For library_dir use "@ROS2_INSTALL@/lib";
+   For library_name use "rcl";
+   For library_kind use "dynamic";
+end LibRCL;

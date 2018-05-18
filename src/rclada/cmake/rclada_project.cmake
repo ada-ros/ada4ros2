@@ -31,6 +31,7 @@ function(add_ada_executable TARGET GPRFILE OUTFILE)
                 -P ${PROJECT_SOURCE_DIR}/${GPRFILE}
                 -aP ${rclada_INCLUDE_DIR}
                 -p -j0 -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
+                #-largs -L/home/jano/local/ros2/ros2_rolling/install/lib/ -lrcl
 
             COMMAND ${CMAKE_COMMAND} -E remove -f ${TARGET}
             COMMAND ${CMAKE_COMMAND} -E copy ${OUTFILE} ${TARGET}

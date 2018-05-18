@@ -44,15 +44,31 @@ if (NOT GNAT)
   message(SEND_ERROR "gnat must be available in PATH")
 endif()
 
+#################################################
+# prepare export information
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#  message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+
+set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/gprinstall/share/gpr)
+set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
+get_filename_component(ROS2_INSTALL ${rcl_INCLUDE_DIRS} DIRECTORY)
+
+# Install the project file that we'll need for users of our rcl.gpr lib
+file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/)
+configure_file(
+        ${PROJECT_SOURCE_DIR}/support/librcl.gpr.in
+        ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/librcl.gpr)
+
 # Find all headers in rcl and generate automatic ada headers
 file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
 message(STATUS "Using RCL headers ${rcl_headers}")
 
 # For some reason rmw folders are duplicated:
 list(GET rmw_INCLUDE_DIRS 0 rmw_header_dir)
-
-#file(GLOB rcutils_headers "${rcutils_INCLUDE_DIRS}/rcutils/*.h")
-#message(STATUS "Using RCUTILS headers ${rcutils_headers}")
 
 # Extra headers that we need
 set(extra_headers
@@ -90,20 +106,16 @@ add_custom_target(rclada_build
         ALL
         COMMAND gprbuild
                     -p -j0
+                    -aP ${rclada_INCLUDE_DIR}
                     -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}/gprbuild
         COMMAND gprinstall
-                    -m -p -P rcl.gpr
+                    -f -m -p -P rcl.gpr
+                    -aP ${rclada_INCLUDE_DIR}
                     -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}/gprbuild
                     --prefix=${PROJECT_BINARY_DIR}/gprinstall
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 add_dependencies(rclada_build rclada_generate_headers)
-
-#################################################
-# Install things and prepare export information
-
-set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/gprinstall/share/gpr)
-set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
 
 #################################################
 # Exported configurations or whatever
@@ -131,15 +143,6 @@ export(PACKAGE ${PROJECT_NAME})
 
 install(FILES package.xml DESTINATION share/${PROJECT_NAME})
 install(FILES cmake/rclada_project.cmake DESTINATION ${PROJECT_BINARY_DIR})
-
-#message("XXXXXXX ${CONF_INCLUDE_DIRS}")
-
-#install(DIRECTORY DESTINATION ${PROJECT_NAME}/gen)
-
-#ament_target_dependencies(${PROJECT_NAME} "rcl")
-
-#ament_export_include_directories(include)
-#ament_export_libraries(${PROJECT_NAME})
 
 #get_cmake_property(_variableNames VARIABLES)
 #list (SORT _variableNames)
