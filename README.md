@@ -37,10 +37,14 @@ This one is simplified removing some common and indirect dependencies, you can s
 
 This project is done with the support of the following entities:
 
-* AdaCore, provider of the open source Ada 2012 compiler [https://www.adacore.com/community]
-* The Robotics, Perception and Real-Time group, RoPeRT, [http://robots.unizar.es]
-* The Defense University Center of Zaragoza, CUD-Z, [http://cud.unizar.es]
+* AdaCore, provider of the open source Ada 2012 compiler https://www.adacore.com/community
+* The Robotics, Perception and Real-Time group, RoPeRT, http://robots.unizar.es
+* The Defense University Center of Zaragoza, CUD-Z, http://cud.unizar.es
 
 <center>
-![AdaCore logo](https://www.adacore.com/uploads/logos/logos-adacore.png)
+  
+<a href="https://www.adacore.com/community"><img src="http://beta.electronicdesign.com/sites/electronicdesign.com/files/Adacore_Logo_Cropped.jpg" height="66"></a>
+<a href="http://robots.unizar.es"><img src="http://robots.unizar.es/wp/wp-content/themes/YellowMagazine/images/logo.png" height="66"></a>
+<a href=" http://cud.unizar.es"><img src="http://cud.unizar.es/sites/default/files/imagenes/CUDlogolargo_alta.jpg" height="66"></a>
+
 </center>
