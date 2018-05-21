@@ -79,6 +79,7 @@ list(GET rmw_INCLUDE_DIRS 0 rmw_header_dir)
 set(extra_headers
         ${rcutils_INCLUDE_DIRS}/rcutils/allocator.h
         ${rcutils_INCLUDE_DIRS}/rcutils/error_handling.h
+        ${rcutils_INCLUDE_DIRS}/rcutils/logging.h
         ${rcutils_INCLUDE_DIRS}/rcutils/time.h
         ${rcutils_INCLUDE_DIRS}/rcutils/types/string_array.h
         ${rcutils_INCLUDE_DIRS}/rcutils/types/string_map.h

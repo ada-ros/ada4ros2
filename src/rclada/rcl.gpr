@@ -4,13 +4,16 @@ with "librcl"; -- The C rcl lib, librcl.so
 
 library project Rcl is
 
+   for Languages use ("ada", "c");
+
    for Library_Name use "rclada";
    for Library_Kind use "static";
 
    for Source_Dirs use ("src/overrides", -- must go in front of gen
                         "gen",
                         "src",
-                        "src/support");
+                        "src/support",
+                       "/home/jano/local/ros2/ros2_rolling/install/include/");
 
    Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
 
@@ -26,10 +29,15 @@ library project Rcl is
       For_Autogen := ("-gnatwU");
 
       for Switches ("ada") use ("-gnatVa", "-gnatwa", "-g", "-O2", "-gnato",
-                                "-fstack-check", "-gnata", "-gnat12");
+                                "-fstack-check", "-gnata", "-gnat12",
+                                "-fPIC");
 
       --  Silence irrelevant warnings
       for Switches ("rclx-*.ads") use Compiler'Switches ("ada") & For_Autogen;
+
+      --  For debug
+--        for Default_Switches ("C") use
+--          ("-I/home/jano/local/ros2/ros2_rolling/install/include/");
    end Compiler;
 
    package Binder is

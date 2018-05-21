@@ -30,6 +30,8 @@ private
    
    function Correct (Ret : RCLx.CX.Bool) return Boolean is (Ret = 0);
    
+   Null_Ptr : CS.Chars_Ptr renames CS.Null_Ptr;
+   
    type C_String (Len : C.size_t) is tagged record
       Cstr : aliased C.Char_Array (1 .. Len);
    end record;
@@ -56,8 +58,12 @@ private
    -- To_Ptr --
    ------------
 
-   function To_Ptr (Str : in out C_String) return CS.Chars_Ptr is
-     (Char_Access_To_Chars_Ptr (Str.Cstr (Str.Cstr'First)'Unchecked_Access));
+   function To_Ptr (Str                   : in out C_String;
+                    Null_Instead_Of_Empty : Boolean := True) 
+                    return CS.Chars_Ptr is
+     (if Null_Instead_Of_Empty and then Str.Len = 0 
+      then Null_Ptr
+      else Char_Access_To_Chars_Ptr (Str.Cstr (Str.Cstr'First)'Unchecked_Access));
    --  This obviously presumes the pointer won't be kept elsewhere.
    --  We shall see if this blows up in our face or what.
    
