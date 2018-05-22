@@ -12,8 +12,8 @@ library project Rcl is
    for Source_Dirs use ("src/overrides", -- must go in front of gen
                         "gen",
                         "src",
-                        "src/support",
-                       "/home/jano/local/ros2/ros2_rolling/install/include/");
+                        "src/experimental",
+                        "src/support");
 
    Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
 
