@@ -32,17 +32,7 @@ find_package(rmw REQUIRED)
 
 message(STATUS "Starting Ada-specific configuration")
 
-# Detect builder and compiler
 
-find_program(GPRBUILD gprbuild)
-if (NOT GPRBUILD)
-  message(SEND_ERROR "gprbuild must be available in PATH")
-endif()
-
-find_program(GNAT gnat)
-if (NOT GNAT)
-  message(SEND_ERROR "gnat must be available in PATH")
-endif()
 
 #################################################
 # prepare export information
@@ -53,7 +43,7 @@ endif()
 #  message(STATUS "${_variableName}=${${_variableName}}")
 #endforeach()
 
-set(${PROJECT_NAME}_INCLUDE_DIR ${PROJECT_BINARY_DIR}/gprinstall/share/gpr)
+
 set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
 get_filename_component(ROS2_INSTALL ${rcl_INCLUDE_DIRS} DIRECTORY)
 
@@ -111,7 +101,7 @@ add_dependencies(rclada_generate_headers rclada_create_folder_for_generated_head
 add_custom_target(rclada_build
         ALL
         COMMAND gprbuild
-                    -p -j0
+                    -p -j0 -P rcl.gpr
                     -aP ${rclada_INCLUDE_DIR}
                     -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}/gprbuild
         COMMAND gprinstall

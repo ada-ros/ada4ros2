@@ -1,6 +1,6 @@
-message("Ada CMake extensions loaded (rclada) v${PROJECT_VERSION}")
+message("Ada CMake extensions loaded (${PROJECT_NAME}) v${PROJECT_VERSION}")
 
-function(add_ada_executable TARGET GPRFILE OUTFILE)
+function(ada_add_executable TARGET GPRFILE OUTFILE)
     # TARGET is a plain name of an executable target
     # GPRFILE is the GPR project file that builds OUTFILE
     # OUTFILE is where the real TARGET is built, relative to the BUILD root of the package
@@ -29,9 +29,8 @@ function(add_ada_executable TARGET GPRFILE OUTFILE)
 
             COMMAND gprbuild
                 -P ${PROJECT_SOURCE_DIR}/${GPRFILE}
-                -aP ${rclada_INCLUDE_DIR}
+                -aP ${ADA_BUILD_DIR}/gpr
                 -p -j0 -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
-                #-largs -L/home/jano/local/ros2/ros2_rolling/install/lib/ -lrcl
 
             COMMAND ${CMAKE_COMMAND} -E remove -f ${TARGET}
             COMMAND ${CMAKE_COMMAND} -E copy ${OUTFILE} ${TARGET}
@@ -39,11 +38,19 @@ function(add_ada_executable TARGET GPRFILE OUTFILE)
             COMMENT "${TARGET} Ada target built"
     )
 
+    # ensure the Ada target is built after the "fake" (but real) cmake one
     add_dependencies(${TARGET}_phony ${TARGET})
 
-    install(TARGETS ${TARGET} DESTINATION lib/${PROJECT_NAME}/)
+    install(TARGETS ${TARGET} DESTINATION bin/${PROJECT_NAME}/)
 
-endfunction(add_ada_executable)
+endfunction(ada_add_executable)
+
+function(ada_import_c_library LIB)
+    # Creates the GPR file to be able to use this project
+    configure_file(
+            ${ADA_RESOURCE_DIR}/external_c_lib.gpr.in
+            ${ADA_BUILD_DIR}/gpr/{LIB}.gpr)
+endfunction(ada_import_c_library)
 
 function(add_ada_library)
     # Build and install an Ada library

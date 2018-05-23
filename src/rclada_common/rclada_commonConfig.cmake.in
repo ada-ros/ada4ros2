@@ -1,7 +1,5 @@
-# Common prefix where built things end up (not installed, but for using)
-set(ADA_BUILD_DIR "@ADA_BUILD_DIR@")
-
-set(ADA_RESOURCE_DIR "@ADA_RESOURCE_DIR@")
+set(rclada_INCLUDE_DIR "@rclada_INCLUDE_DIR@")
+set(rclada_SUPPORT_DIR "@rclada_SUPPORT_DIR@")
 
 # MACROS FOR ADA PROJECTS
 include(@PROJECT_BINARY_DIR@/rclada_project.cmake)
@@ -11,5 +9,8 @@ include(@PROJECT_BINARY_DIR@/rclada_project.cmake)
 # include("${rclada_DIR}/export_rclada.cmake")
 
 # These are IMPORTED targets created by rcladaTargets.cmake
+
+
+
 
 
