@@ -3,24 +3,19 @@
 <package format="3">
   <name>rosidl_generator_ada</name>
   <version>0.1.0</version>
-  <description>Generate the ROS interfaces in Ada.</description>
+  <description>Generate the ROS interfaces in Ada</description>
   <maintainer email="amosteo@unizar.es">Alejandro R. Mosteo</maintainer>
   <license>Apache License 2.0</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>cmake</buildtool_depend>
 
-  <buildtool_export_depend>ament_cmake</buildtool_export_depend>
-  <buildtool_export_depend>rosidl_cmake</buildtool_export_depend>
+  <build_depend>rclada_common</build_depend>
 
-  <!-- This is needed for the rosidl_message_type_support_t struct and visibility macros -->
-  <build_export_depend>rosidl_generator_c</build_export_depend>
+  <!-- for the rosidl_message_type_support_t struct and visibility macros -->
+  <build_depend>rosidl_generator_c</build_depend>
 
-  <!-- Hook this package with the C packages so rosidl_default_generators depends also on us -->
-  <member_of_group>rosidl_typesupport_c_packages</member_of_group>
-
-  <exec_depend>rosidl_parser</exec_depend>
 
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>cmake</build_type>
   </export>
 </package>

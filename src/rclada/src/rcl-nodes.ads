@@ -1,6 +1,6 @@
 with Ada.Finalization;
 
-with RCLx.Rcl_Node_H;
+with RCLx.Rcl_Node_H; use RCLx.Rcl_Node_H;
 
 package RCL.Nodes is
 
@@ -19,11 +19,19 @@ package RCL.Nodes is
    overriding procedure Finalize (This : in out Node);
    --  Can be called prematurely to shut down a node
    
+   type Reference (Ptr : access Rcl_Node_T) is null record
+     with Implicit_Dereference => Ptr;
+   
+   function To_C (This : aliased in out Node) return Reference;
+   
 private
    
    type Node is new Ada.Finalization.Limited_Controlled with record 
-      Impl : aliased Rcl_Node_H.Rcl_Node_T;
+      Impl : aliased Rcl_Node_T := Rcl_Get_Zero_Initialized_Node;
    end record;
+   
+   function To_C (This : aliased in out Node) return Reference is
+     (Ptr => This.Impl'Access);
    
    Default_Options : constant Options := (null record);
 

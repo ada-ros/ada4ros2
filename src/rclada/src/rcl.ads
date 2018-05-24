@@ -23,6 +23,7 @@ private
    
    use RCLx;
    
+   use all type RCLx.C.int;
    use all type RCLx.C.size_t;
    use all type RCLx.C.unsigned_char;
    
@@ -45,7 +46,7 @@ private
      (Len => S'Length + 1, 
       Cstr => C.To_C (S));   
    
-   type Char_Access is access all C.Char;
+   type Char_Access is access constant C.Char;
    
    ------------------------------
    -- Char_Access_To_Chars_Ptr --
@@ -58,7 +59,7 @@ private
    -- To_Ptr --
    ------------
 
-   function To_Ptr (Str                   : in out C_String;
+   function To_Ptr (Str                   : C_String;
                     Null_Instead_Of_Empty : Boolean := True) 
                     return CS.Chars_Ptr is
      (if Null_Instead_Of_Empty and then Str.Len = 0 

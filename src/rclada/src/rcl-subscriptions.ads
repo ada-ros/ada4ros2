@@ -1,7 +1,11 @@
 with Ada.Finalization;
 with Ada.Streams; use Ada.Streams;
 
+with RCL.Nodes;
+
 with RCLx.Rcl_Subscription_H; use RCLx.Rcl_Subscription_H; 
+
+with ROSIDL;
 
 package RCL.Subscriptions is
    
@@ -9,8 +13,13 @@ package RCL.Subscriptions is
       Intra_Process : Boolean;
    end record;  
 
-   type Subscription is new Ada.Finalization.Limited_Controlled with private;
+   type Subscription (<>) is new Ada.Finalization.Limited_Controlled with private;
    
+   function Init (Node     : in out Nodes.Node;
+                  Msg_Type :        ROSIDL.Typesupport.Msg_Support_Ptr;
+                  Topic    :        String) return Subscription;
+   --  TODO: options
+                     
    function Take_Raw (This   :      in out Subscription;
                       Buffer :         out Stream_Element_Array;
                       Info   :         out Message_Info)
@@ -25,7 +34,7 @@ package RCL.Subscriptions is
 private 
    
    type Subscription is new Ada.Finalization.Limited_Controlled with record
-      Impl : Rcl_Subscription_T;
+      Impl : aliased Rcl_Subscription_T := Rcl_Get_Zero_Initialized_Subscription;
    end record;
 
 end RCL.Subscriptions;

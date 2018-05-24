@@ -31,10 +31,16 @@ if (NOT GNAT)
   message(SEND_ERROR "gnat must be available in PATH")
 endif()
 
+# Prepare common paths
+
 set(ADA_BUILD_DIR ${PROJECT_BINARY_DIR})
 set(ADA_RESOURCE_DIR ${PROJECT_SOURCE_DIR}/resources)
 
+# Include macros for Ada targets
+
 include(cmake/ada_project.cmake)
+
+# Make us findable:
 
 export(PACKAGE ${PROJECT_NAME})
 install(FILES package.xml DESTINATION share/${PROJECT_NAME})

@@ -1,6 +1,6 @@
 with "librcutils";
 with "librcl"; -- The C rcl lib, librcl.so
---  These withed only for their linking
+with "rosidl";
 
 library project Rcl is
 

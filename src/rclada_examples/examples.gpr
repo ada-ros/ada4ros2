@@ -1,8 +1,11 @@
 with "rcl";
+with "rosidl_std_msgs";
 
 project Examples is
 
    for Source_Dirs use ("src");
+
+   for Languages use ("Ada", "C");
 
    Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
 
@@ -10,7 +13,7 @@ project Examples is
    for Exec_Dir    use Build_Prefix & "/bin";
    for Library_Dir use Build_Prefix & "/lib";
 
-   for Main use ("listener.adb");
+   for Main use ("listener.adb", "c_listener.c");
 
    package Builder is
       for Switches ("ada") use ("-j0", "-g");
@@ -21,6 +24,8 @@ project Examples is
 
       for Switches ("ada") use ("-gnatVa", "-gnatwa", "-g", "-O2", "-gnato",
                                 "-fstack-check", "-gnata", "-gnat12");
+
+      for Switches ("C") use ("-Wall", "-Wextra", "-pedantic");
 
       --  Silence irrelevant warnings
       for Switches ("rclx-*.ads") use Compiler'Switches ("ada") & For_Autogen;
