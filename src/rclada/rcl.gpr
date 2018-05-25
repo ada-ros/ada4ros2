@@ -1,5 +1,5 @@
-with "librcutils";
-with "librcl"; -- The C rcl lib, librcl.so
+with "clib_rcutils";
+with "clib_rcl";
 with "rosidl";
 
 library project Rcl is

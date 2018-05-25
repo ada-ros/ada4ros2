@@ -1,8 +1,0 @@
-library project c_rosidl_typesupport_c is
-   For externally_built use "true";
-   for Languages use ("C");
-   for Source_Dirs use ("/home/jano/local/ros2/ros2_rolling/install/include");
-   For library_dir use "/home/jano/local/ros2/ros2_rolling/install/lib";
-   For library_name use "rosidl_typesupport_c";
-   For library_kind use "dynamic";
-end c_rosidl_typesupport_c;

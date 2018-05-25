@@ -10,6 +10,7 @@ install_isolated
 lib
 obj
 
+.#*#
 *.ali
 *.db
 *-loc.xml

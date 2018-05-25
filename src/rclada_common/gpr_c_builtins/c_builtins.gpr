@@ -1,0 +1,36 @@
+project C_Builtins is
+
+   for Library_Name use "c_builtins";
+
+   type Yes_No is ("Yes", "No");
+
+   Generated  := External ("GENERATED_DIR", "gen");
+   Ros_Build  : Yes_No := external ("ROS_BUILD", "No");
+   Ros_Prefix := external ("ADAROS_PREFIX", "");
+
+   case Ros_Build is
+      when "Yes" =>
+         for Source_Dirs use ("gen", "src");
+      when "No" =>
+         for Source_Dirs use (Ros_Prefix & "/build/rclada_common/gpr_c_builtins/gen",
+                              "src");
+   end case;
+
+   for Object_Dir  use "obj";
+   for Library_Dir use "lib";
+
+   package Builder is
+      for Switches ("ada") use ("-j0", "-g");
+   end Builder;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatVa", "-gnatwa", "-g", "-O2", "-gnata", "-gnat12", "-gnato", "-fstack-check");
+      for Switches ("*_h.ads") use ("-gnatwU");
+   end Compiler;
+
+   package Binder is
+      for Switches ("ada") use ("-Es");
+   end Binder;
+
+end C_Builtins;
+

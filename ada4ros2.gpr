@@ -1,18 +1,18 @@
 aggregate project Ada4ROS2 is
 
-   for Project_Path use (
-                         "src/rosidl_generator_ada/resources/ada_base_project",
---                         "src/rosidl_generator_ada/resources/ada_typesupport_project",
-                         "src/rosidl_generator_ada/resources/ada_typesupport_std_msgs",
-                         "src/rclada",
-                         "src/rclada/dev");
+   --  We use here the build directories:
+
+   for Project_Path use ("install/share/gprimport",
+                         "src/rclada_common/gpr_c_builtins",
+                         "src/rosidl_generator_ada/gpr_c_typesupport",
+                         "src/rosidl_generator_ada/gpr_rosidl"
+                        );
 
    for Project_Files use (
-                          "src/rosidl_generator_ada/resources/ada_base_project/rosidl.gpr",
-                          "src/rosidl_generator_ada/resources/ada_typesupport_std_msgs/rosidl_std_msgs.gpr",
---                          "src/rosidl_generator_ada/resources/ada_typesupport_project/rosidl_rospkg.gpr",
-                          "src/rclada/rcl.gpr",
-                          "src/rclada_examples/examples.gpr"
+                          "src/rclada_common/gpr_c_builtins/c_builtins.gpr",
+                          "src/rosidl_generator_ada/gpr_c_typesupport/c_typesupport.gpr",
+                          "src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
+                          "src/rclada/rcl.gpr"
                          );
 
 end Ada4ROS2;

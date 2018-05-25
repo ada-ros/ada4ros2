@@ -1,0 +1,14 @@
+# Common prefix where built things end up (not installed, but for using)
+
+set(ADA_BUILD_DIR "${PROJECT_BINARY_DIR}")
+set(ADA_GPR_DIR "@ADA_GPR_DIR@")
+set(ADA_GPRIMPORT_DIR "@ADA_GPRIMPORT_DIR@")
+set(ADA_RESOURCE_DIR "@ADA_RESOURCE_DIR@")
+
+# MACROS FOR ADA PROJECTS
+include(@CMAKE_INSTALL_PREFIX@/share/@PROJECT_NAME@/cmake/ada_project.cmake)
+
+
+
+
+

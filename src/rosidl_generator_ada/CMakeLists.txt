@@ -12,41 +12,44 @@ set(PROJECT_VERSION ${${PROJECT_NAME}_VERSION})
 message(" ")
 message("${PROJECT_NAME} version ${PROJECT_VERSION}")
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
-
 if(BUILD_TESTING)
     # Silence a warning (?)
 endif()
 
-function(ada_with_msg _ros_msg_pkg _ros_msg_type)
-endfunction()
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_generator_c REQUIRED)
+find_package(std_msgs REQUIRED)
 
-#[[
-find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_python REQUIRED)
+find_package(rclada_common REQUIRED)
 
-ament_export_dependencies(rosidl_cmake)
-ament_export_dependencies(rosidl_generator_c)
-ament_export_include_directories(include)
 
-ament_python_install_package(${PROJECT_NAME})
+# Generate autobinding for std types and rosidl_typesupport_c
 
-ament_package(
-  CONFIG_EXTRAS "rosidl_generator_cpp-extras.cmake.in"
-)
+ada_find_include_dir(_builtin_include ${builtin_interfaces_DIR})
+ada_find_include_dir(_stdmsgs_include ${std_msgs_DIR})
+ada_find_include_dir(_generator_include ${rosidl_generator_c_DIR})
 
-install(
-  PROGRAMS bin/rosidl_generator_cpp
-  DESTINATION lib/rosidl_generator_cpp
-)
-install(
-  DIRECTORY cmake resource
-  DESTINATION share/${PROJECT_NAME}
-)
-install(
-  DIRECTORY include/
-  DESTINATION include
-)
-]]
+file(GLOB _headers
+        "${_builtin_include}/builtin_interfaces/msg/*.h"
+        "${_stdmsgs_include}/std_msgs/msg/*.h"
+        "${_generator_include}/rosidl_generator_c/*.h")
+
+set(_includes "${_builtin_include};${_stdmsgs_include};${_generator_include}")
+
+ada_generate_binding(
+        ada_binding_rosidl_typesupport_c
+        gpr_c_typesupport
+        "${_includes}"
+        ${_headers})
+
+# Compile & install the high-level rosidl binding
+
+# Export package
+ada_export_package()
+
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+

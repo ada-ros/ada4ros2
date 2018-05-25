@@ -1,62 +1,33 @@
 cmake_minimum_required(VERSION 3.5)
-project(rclada VERSION 0.1.0 LANGUAGES NONE)
+project(rclada)
+
+set(${PROJECT_NAME}_MAJOR_VERSION 0)
+set(${PROJECT_NAME}_MINOR_VERSION 1)
+set(${PROJECT_NAME}_PATCH_VERSION 0)
+set(${PROJECT_NAME}_VERSION
+        ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_PATCH_VERSION})
+set(PROJECT_VERSION ${${PROJECT_NAME}_VERSION})
 
 message(" ")
 message("${PROJECT_NAME} version ${PROJECT_VERSION}")
-
-# Default to C99
-if(NOT CMAKE_C_STANDARD)
-  set(CMAKE_C_STANDARD 99)
-endif()
-
-# Default to C++14
-if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
-endif()
-
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
 
 if(BUILD_TESTING)
   # Silence a warning (?)
 endif()
 
-#find_package(ament_cmake REQUIRED)
 find_package(rcl REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rmw REQUIRED)
-#find_package(rcutils REQUIRED)
 
-###########################################################################
+find_package(rclada_common REQUIRED)
+find_package(rosidl_generator_ada REQUIRED)
 
-message(STATUS "Starting Ada-specific configuration")
+# IMPORT THE C LIBRARIES
 
+ada_import_c_library(rcutils)
+ada_import_c_library(rcl)
 
-
-#################################################
-# prepare export information
-
-#get_cmake_property(_variableNames VARIABLES)
-#list (SORT _variableNames)
-#foreach (_variableName ${_variableNames})
-#  message(STATUS "${_variableName}=${${_variableName}}")
-#endforeach()
-
-
-set(${PROJECT_NAME}_SUPPORT_DIR ${PROJECT_SOURCE_DIR}/support)
-get_filename_component(ROS2_INSTALL ${rcl_INCLUDE_DIRS} DIRECTORY)
-
-# Install the project files that we'll need for users of our rcl.gpr lib
-file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/)
-
-set(NEEDED_LIBS rcl rcutils)
-
-foreach(EXT_LIB_NAME ${NEEDED_LIBS})
-  configure_file(
-          ${PROJECT_SOURCE_DIR}/support/external_lib.gpr.in
-          ${PROJECT_BINARY_DIR}/gprinstall/share/gpr/lib${EXT_LIB_NAME}.gpr)
-endforeach()
+return() ##################################################################################
 
 # Find all headers in rcl and generate automatic ada headers
 file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
