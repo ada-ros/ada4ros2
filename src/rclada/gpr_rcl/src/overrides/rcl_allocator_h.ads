@@ -2,9 +2,9 @@ pragma Ada_2005;
 pragma Style_Checks (Off);
 
 --  with Interfaces.C; use Interfaces.C;
-with rclx.rcutils_allocator_h;
+with Rcutils_Allocator_H;
 
-package rclx.rcl_allocator_h is
+package Rcl_Allocator_H is
 
    --  unsupported macro: rcl_get_default_allocator rcutils_get_default_allocator
    --  unsupported macro: rcl_reallocf rcutils_reallocf
@@ -22,6 +22,6 @@ package rclx.rcl_allocator_h is
   -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
-   type rcl_allocator_t is new rclx.rcutils_allocator_h.rcutils_allocator_t;  -- /home/jano/local/ros2/ros2_rolling/install/include/rcl/allocator.h:25
+   type rcl_allocator_t is new Rcutils_Allocator_H.rcutils_allocator_t;  -- /home/jano/local/ros2/ros2_rolling/install/include/rcl/allocator.h:25
 
-end rclx.rcl_allocator_h;
+end Rcl_Allocator_H;

@@ -1,6 +1,6 @@
 with Ada.Unchecked_Conversion;
 
-with Rclx.Rmw_Types_H; use rclx.Rmw_Types_H;
+with Rmw_Types_H; use Rmw_Types_H;
 
 package RCL.Errors is
 

@@ -43,6 +43,9 @@ ada_generate_binding(
         ${_headers})
 
 # Compile & install the high-level rosidl binding
+add_ada_library(ada_rosidl gpr_rosidl)
+
+add_dependencies(ada_rosidl ada_binding_rosidl_typesupport_c)
 
 # Export package
 ada_export_package()

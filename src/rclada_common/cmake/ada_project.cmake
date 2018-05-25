@@ -46,14 +46,36 @@ function(ada_add_executable TARGET GPRFILE OUTFILE)
 endfunction(ada_add_executable)
 
 
-function(add_ada_library)
-    # Build and install an Ada library
-    # Both for dependent Ada and C/C++ projects
-    # In the C/C++ the actual built path is propagated
-    # For the Ada case, all libraries are installed inside rclada build folder
-    # This is ugly but there's no way without much uglifying client projects,
-    #   since each one has its own isolated CMake environment
-    # Or perhaps this is doable hiding ugliness of cmake files here? Must think
+function(add_ada_library TARGET SRCFOLDER)
+
+    get_filename_component(_basename ${SRCFOLDER} NAME)
+    set(_workspace ${PROJECT_BINARY_DIR}/${_basename})
+
+    # working space:
+    file(COPY ${SRCFOLDER}
+            DESTINATION ${PROJECT_BINARY_DIR})
+
+    file(GLOB _gprfile "${_workspace}/*.gpr")
+
+    message(STATUS "Building ${_gprfile} in ${SRCFOLDER}")
+
+    add_custom_target(${TARGET}
+            ALL
+
+            # build
+            COMMAND gprbuild
+                -p -j0 -P ${_gprfile}
+                -XROS_BUILD=Yes
+                -aP ${ADA_GPR_DIR}
+                -aP ${ADA_GPRIMPORT_DIR}
+
+            # install
+            COMMAND gprinstall
+                -f -m -p -P ${_gprfile}
+                -XROS_BUILD=Yes
+                -aP ${ADA_GPR_DIR}
+                -aP ${ADA_GPRIMPORT_DIR}
+                --prefix=${CMAKE_INSTALL_PREFIX})
 endfunction(add_ada_library)
 
 
@@ -127,14 +149,12 @@ function(ada_generate_binding TARGET SRCFOLDER INCLUDE #[[ ARGN ]])
 
             COMMAND gprbuild
                 -p -j0 -P ${_gprfile}
-                -XPROJECT_DIR=${_workspace}
                 -XROS_BUILD=Yes
                 -aP ${ADA_GPR_DIR}
                 -aP ${ADA_GPRIMPORT_DIR}
 
             COMMAND gprinstall
                 -f -m -p -P ${_gprfile}
-                -XPROJECT_DIR=${_workspace}
                 -XROS_BUILD=Yes
                 -aP ${ADA_GPR_DIR}
                 -aP ${ADA_GPRIMPORT_DIR}

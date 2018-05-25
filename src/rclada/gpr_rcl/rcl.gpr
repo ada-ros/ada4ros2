@@ -4,40 +4,41 @@ with "rosidl";
 
 library project Rcl is
 
+   type Yes_No is ("Yes", "No");
+
+   Ros_Build  : Yes_No := external ("ROS_BUILD", "No");
+
    for Languages use ("ada", "c");
 
    for Library_Name use "rclada";
    for Library_Kind use "static";
 
+   Gen_Prefix := "";
+   case Ros_Build is
+      when "Yes" => Gen_Prefix := ".";
+      when "No"  => Gen_Prefix := "../../../build/rclada/gpr_rcl";
+   end case;
+
    for Source_Dirs use ("src/overrides", -- must go in front of gen
-                        "gen",
                         "src",
                         "src/experimental",
-                        "src/support");
+                        "src/support",
+                        Gen_Prefix & "/gen");
 
-   Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
-
-   for Object_Dir  use Build_Prefix & "/obj";
-   for Exec_Dir    use Build_Prefix & "/bin";
-   for Library_Dir use Build_Prefix & "/lib";
+   for Object_Dir  use "obj";
+   for Library_Dir use "lib";
 
    package Builder is
       for Switches ("ada") use ("-j0", "-g");
    end Builder;
 
    package Compiler is
-      For_Autogen := ("-gnatwU");
-
       for Switches ("ada") use ("-gnatVa", "-gnatwa", "-g", "-O2", "-gnato",
                                 "-fstack-check", "-gnata", "-gnat12",
                                 "-fPIC");
 
       --  Silence irrelevant warnings
-      for Switches ("rclx-*.ads") use Compiler'Switches ("ada") & For_Autogen;
-
-      --  For debug
---        for Default_Switches ("C") use
---          ("-I/home/jano/local/ros2/ros2_rolling/install/include/");
+      for Switches ("*_h.ads") use Compiler'Switches ("ada") & ("-gnatwU");
    end Compiler;
 
    package Binder is

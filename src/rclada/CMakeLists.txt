@@ -27,26 +27,41 @@ find_package(rosidl_generator_ada REQUIRED)
 ada_import_c_library(rcutils)
 ada_import_c_library(rcl)
 
-return() ##################################################################################
-
 # Find all headers in rcl and generate automatic ada headers
-file(GLOB rcl_headers "${rcl_INCLUDE_DIRS}/rcl/*.h")
-message(STATUS "Using RCL headers ${rcl_headers}")
 
-# For some reason rmw folders are duplicated:
-list(GET rmw_INCLUDE_DIRS 0 rmw_header_dir)
+ada_find_include_dir(_rcl_include ${rcl_DIR})
+ada_find_include_dir(_rcutils_include ${rcutils_DIR})
+ada_find_include_dir(_rmw_include ${rmw_DIR})
+
+file(GLOB
+        _headers
+        "${_rcl_include}/rcl/*.h"
+        "${_rcutils_include}/rcutils/*.h"
+        "${_rcutils_include}/rcutils/types/*.h"
+        "${_rmw_include}/rmw/*.h")
+
+set(_includes "${_rcutils_include};${_rmw_include};${_rcl_include}")
 
 # Extra headers that we need
-set(extra_headers
-        ${rcutils_INCLUDE_DIRS}/rcutils/allocator.h
-        ${rcutils_INCLUDE_DIRS}/rcutils/error_handling.h
-        ${rcutils_INCLUDE_DIRS}/rcutils/logging.h
-        ${rcutils_INCLUDE_DIRS}/rcutils/time.h
-        ${rcutils_INCLUDE_DIRS}/rcutils/types/string_array.h
-        ${rcutils_INCLUDE_DIRS}/rcutils/types/string_map.h
-        ${rmw_header_dir}/rmw/names_and_types.h
-        ${rmw_header_dir}/rmw/types.h)
-message(STATUS "Using EXTRA headers ${extra_headers}")
+set(_extra_headers
+        ${_rcutils_include}/rcutils/allocator.h
+        ${_rcutils_include}/rcutils/error_handling.h
+        ${_rcutils_include}/rcutils/logging.h
+        ${_rcutils_include}/rcutils/time.h
+        ${_rcutils_include}/rcutils/types/string_array.h
+        ${_rcutils_include}/rcutils/types/string_map.h
+        ${_rmw_include}/rmw/names_and_types.h
+        ${_rmw_include}/rmw/types.h)
+
+ada_generate_binding(
+        ada_binding_rcl
+        gpr_rcl
+        "${_includes}"
+        ${_headers}
+        ${_extra_headers}
+)
+
+return() ##################################################################################
 
 add_custom_target(rclada_create_folder_for_generated_headers
         ALL

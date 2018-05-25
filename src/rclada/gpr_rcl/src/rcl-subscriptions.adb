@@ -2,9 +2,9 @@ with Ada.Unchecked_Conversion;
 
 with RCL.Logging;
 
-with RCLx.Rcl_Types_H; use RCLx.Rcl_Types_H;
-with Rclx.Rmw_Types_H; use Rclx.Rmw_Types_H;
-with rclx.Rosidl_Generator_C_Message_Type_Support_Struct_H; use rclx.Rosidl_Generator_C_Message_Type_Support_Struct_H;
+with Rcl_Types_H; use Rcl_Types_H;
+with Rmw_Types_H; use Rmw_Types_H;
+with Rosidl_Generator_C_Message_Type_Support_Struct_H; use Rosidl_Generator_C_Message_Type_Support_Struct_H;
 
 package body RCL.Subscriptions is
 

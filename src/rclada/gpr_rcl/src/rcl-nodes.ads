@@ -1,6 +1,6 @@
 with Ada.Finalization;
 
-with RCLx.Rcl_Node_H; use RCLx.Rcl_Node_H;
+with Rcl_Node_H; use Rcl_Node_H;
 
 package RCL.Nodes is
 

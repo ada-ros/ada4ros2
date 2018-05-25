@@ -3,10 +3,10 @@ with Ada.Finalization;
 
 with RCL.Errors;
 
-with RCLx.Rcl_Allocator_H; use RCLx.Rcl_Allocator_H;
-with RCLx.Rcl_Rcl_H; use RCLx.Rcl_Rcl_H;
+with Rcl_Allocator_H; use Rcl_Allocator_H;
+with Rcl_Rcl_H; use Rcl_Rcl_H;
 
-with RCLx.Rcutils_Allocator_H; use RCLx.Rcutils_Allocator_H;
+with Rcutils_Allocator_H; use Rcutils_Allocator_H;
 
 with System;
 
@@ -35,8 +35,8 @@ package body RCL is
    -- Check --
    -----------
 
-   procedure Check (Ret : RCLx.rcl_types_h.Rcl_Ret_T) is
-      procedure Internal is new Generic_Check (RCLx.Rcl_Types_H.Rcl_Ret_T);
+   procedure Check (Ret : rcl_types_h.Rcl_Ret_T) is
+      procedure Internal is new Generic_Check (Rcl_Types_H.Rcl_Ret_T);
    begin
       Internal (Ret);
    end Check;

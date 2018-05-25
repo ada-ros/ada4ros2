@@ -3,7 +3,7 @@ with Ada.Streams; use Ada.Streams;
 
 with RCL.Nodes;
 
-with RCLx.Rcl_Subscription_H; use RCLx.Rcl_Subscription_H; 
+with Rcl_Subscription_H; use Rcl_Subscription_H; 
 
 with ROSIDL;
 

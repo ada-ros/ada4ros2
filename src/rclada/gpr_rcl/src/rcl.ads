@@ -4,10 +4,10 @@ pragma Warnings (On);
 
 with Ada.Unchecked_Conversion; -- Uh oh...
 
+with Interfaces.C.Extensions;
 with Interfaces.C.Strings;
 
-with RCLx; pragma Unreferenced (Rclx); 
-with RCLx.Rcl_Types_H;
+with Rcl_Types_H;
 
 package RCL is
    
@@ -19,17 +19,17 @@ private
    --    some convenience things are declared here, not intended for the
    --    actual users of this library.
   
+   package C  renames Interfaces.C;
    package CS renames Interfaces.C.Strings;
+   package CX renames Interfaces.C.Extensions;
    
-   use RCLx;
+   use all type C.int;
+   use all type C.size_t;
+   use all type C.unsigned_char;
    
-   use all type RCLx.C.int;
-   use all type RCLx.C.size_t;
-   use all type RCLx.C.unsigned_char;
+   procedure Check (Ret : rcl_types_h.Rcl_Ret_T);
    
-   procedure Check (Ret : RCLx.rcl_types_h.Rcl_Ret_T);
-   
-   function Correct (Ret : RCLx.CX.Bool) return Boolean is (Ret = 0);
+   function Correct (Ret : CX.Bool) return Boolean is (Ret = 0);
    
    Null_Ptr : CS.Chars_Ptr renames CS.Null_Ptr;
    
