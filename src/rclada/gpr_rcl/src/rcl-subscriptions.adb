@@ -38,14 +38,14 @@ package body RCL.Subscriptions is
    -- Take_Raw --
    --------------
 
-   function Take_Raw (This   :      in out Subscription;
-                      Buffer :         out Stream_Element_Array;
-                      Info   :         out Message_Info)
-                      return               Boolean
+   function Take_Raw (This   : in out Subscription;
+                      Buffer :        System.Address;
+                      Info   :    out Message_Info)
+                      return          Boolean
    is
       Impl_Info : aliased Rmw_Message_Info_T;
       Ret       : constant Rcl_Ret_T := Rcl_Take (This.Impl'Access,
-                                                  Buffer (Buffer'First)'Address,
+                                                  Buffer,
                                                   Impl_Info'Access);
    begin
       if Ret = RMW_RET_OK then

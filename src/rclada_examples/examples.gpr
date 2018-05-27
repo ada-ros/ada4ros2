@@ -6,11 +6,9 @@ project Examples is
 
    for Languages use ("Ada", "C");
 
-   Build_Prefix := external ("PROJECT_BINARY_DIR", ".");
-
-   for Object_Dir  use Build_Prefix & "/obj";
-   for Exec_Dir    use Build_Prefix & "/bin";
-   for Library_Dir use Build_Prefix & "/lib";
+   for Object_Dir  use "obj";
+   for Exec_Dir    use "bin";
+   for Library_Dir use "lib";
 
    for Main use ("listener.adb", "c_listener.c");
 
