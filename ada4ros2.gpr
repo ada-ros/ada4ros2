@@ -13,7 +13,8 @@ aggregate project Ada4ROS2 is
                           "src/rclada_common/gpr_c_builtins/c_builtins.gpr",
                           "src/rosidl_generator_ada/gpr_c_typesupport/c_typesupport.gpr",
                           "src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
-                          "src/rclada/gpr_rcl/rcl.gpr"
+                          "src/rclada/gpr_rcl/rcl.gpr",
+                          "src/rclada_examples/examples.gpr"
                          );
 
 end Ada4ROS2;

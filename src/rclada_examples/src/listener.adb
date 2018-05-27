@@ -4,7 +4,7 @@ with RCL.Logging;
 with RCL.Nodes;
 with RCL.Subscriptions;
 
-with Rosidl.Std_Msgs;
+with std_msgs_msg_bool_utype_support_h; use Std_Msgs_Msg_Bool_Utype_Support_H;
 
 procedure Listener is
    use RCL;
@@ -22,7 +22,7 @@ begin
       declare
          Sub  : Subscriptions.Subscription :=
                   Subscriptions.Init (Node,
-                                      Rosidl.Std_Msgs.Msg.Typesupport_String,
+                                      rosidl_typesupport_c_u_get_message_type_support_handle_u_std_msgs_u_msg_u_Bool,
                                       "chatter");
 
          Info : Subscriptions.Message_Info;

@@ -20,7 +20,9 @@ function(ada_add_executable TARGET GPRFILE OUTFILE)
     # Arguably ExternalProject_Add would be more appropriate, but in this case
     #   we need to stay within CMake "actual" targets so ros2 adds them as executables.
 
-    add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
+    add_executable($TARGET $OUTFILE)
+
+    #add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
 
     add_custom_target(
             ${TARGET}_phony
@@ -91,6 +93,8 @@ function(ada_export_package)
             ${PROJECT_BINARY_DIR}/${_cmake_conf_file}
             @ONLY)
 
+    message(${PROJECT_NAME})
+
     install(FILES
             ${PROJECT_BINARY_DIR}/${_cmake_conf_file}
             ${PROJECT_BINARY_DIR}/${_cmake_version_file}
@@ -101,12 +105,20 @@ function(ada_export_package)
 endfunction()
 
 
-function (ada_find_include_dir RETURN PACKAGE_DIR)
+function (ada_find_package_include_dir RETURN PACKAGE_DIR)
     # Just three up
     get_filename_component(_dir ${PACKAGE_DIR} DIRECTORY)
     get_filename_component(_dir ${_dir} DIRECTORY)
     get_filename_component(_dir ${_dir} DIRECTORY)
     set(${RETURN} ${_dir}/include PARENT_SCOPE)
+endfunction()
+
+function (ada_find_package_library_dir RETURN PACKAGE_DIR)
+    # Just three up
+    get_filename_component(_dir ${PACKAGE_DIR} DIRECTORY)
+    get_filename_component(_dir ${_dir} DIRECTORY)
+    get_filename_component(_dir ${_dir} DIRECTORY)
+    set(${RETURN} ${_dir}/lib PARENT_SCOPE)
 endfunction()
 
 
@@ -116,7 +128,7 @@ function(ada_generate_binding TARGET SRCFOLDER INCLUDE #[[ ARGN ]])
     # SRCFOLDER is a preexisting ada project prepared to compile in "gen" the generated specs
     # INCLUDE, list (;-separated) of folders to add with -I
 
-    message(STATUS "Generating binding for ${SRCFOLDER} with files ${ARGN}")
+    #message(STATUS "Generating binding for ${SRCFOLDER} with files ${ARGN}")
 
     get_filename_component(_basename ${SRCFOLDER} NAME)
     set(_workspace ${PROJECT_BINARY_DIR}/${_basename})
@@ -132,12 +144,11 @@ function(ada_generate_binding TARGET SRCFOLDER INCLUDE #[[ ARGN ]])
     if(NOT INCLUDE STREQUAL "")
         string(REPLACE ";" ";-I" INCLUDE "${INCLUDE}")
         set(INCLUDE "-I${INCLUDE}")
-        message("AFTER ${INCLUDE}")
     endif()
 
-    # Generate headers
-    add_custom_target(${TARGET}
-            ALL
+    # To avoid unneeded regenerations, we use a mock file to depend on which will be created when generating
+    add_custom_command(
+            OUTPUT ${_workspace}/gen/generated_flag
 
             WORKING_DIRECTORY ${_workspace}/gen
 
@@ -146,6 +157,14 @@ function(ada_generate_binding TARGET SRCFOLDER INCLUDE #[[ ARGN ]])
                 -C
                 ${INCLUDE}
                 ${ARGN}
+
+            COMMAND touch ${_workspace}/gen/generated_flag)
+
+    # Generate headers
+    add_custom_target(${TARGET}
+            ALL
+
+            DEPENDS ${_workspace}/gen/generated_flag
 
             COMMAND gprbuild
                 -p -j0 -P ${_gprfile}
@@ -162,10 +181,22 @@ function(ada_generate_binding TARGET SRCFOLDER INCLUDE #[[ ARGN ]])
 endfunction()
 
 
-function(ada_import_c_library LIB)
-    # Creates the GPR file to be able to use this project
-    set(EXT_LIB_NAME ${LIB})
-    configure_file(
-            ${ADA_RESOURCE_DIR}/external_c_lib.gpr.in
-            ${ADA_GPRIMPORT_DIR}/clib_${LIB}.gpr)
-endfunction(ada_import_c_library)
+function(ada_import_c_libraries #[[ ARGN ]])
+    # Expects a list of absolute paths to libs
+    # One GPR file per path will be generated
+
+    foreach(_lib ${ARGN})
+        get_filename_component(_ext_lib_name ${_lib} NAME_WE)
+        string(REPLACE lib "" _ext_lib_name ${_ext_lib_name})
+        string(REPLACE "__" "_" _ext_safe_name ${_ext_lib_name})
+
+        get_filename_component(_ext_lib_path ${_lib} DIRECTORY)
+
+        message("XXXXXXXXXXXXXX ${_ext_lib_name}")
+        #message("XXXXXXXXXXXXXX ${_ext_lib_path}")
+
+        configure_file(
+                ${ADA_RESOURCE_DIR}/external_c_lib.gpr.in
+                ${ADA_GPRIMPORT_DIR}/clib_${_ext_safe_name}.gpr)
+    endforeach()
+endfunction()

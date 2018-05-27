@@ -1,8 +1,9 @@
-library project clib_@EXT_LIB_NAME@ is
+library project clib_@_ext_safe_name@ is
+
    For externally_built use "true";
    for Languages use ("C");
-   for Source_Dirs use ("@CMAKE_INSTALL_PREFIX@/include");
-   For library_dir use "@CMAKE_INSTALL_PREFIX@/lib";
-   For library_name use "@EXT_LIB_NAME@";
+   For library_dir use "@_ext_lib_path@";
+   For library_name use "@_ext_lib_name@";
    For library_kind use "dynamic";
-end clib_@EXT_LIB_NAME@;
+
+end clib_@_ext_safe_name@;

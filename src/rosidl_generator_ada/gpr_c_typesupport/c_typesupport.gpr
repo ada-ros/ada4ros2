@@ -1,4 +1,5 @@
 with "c_builtins";
+with "clib_std_msgs_rosidl_typesupport_c";
 
 project C_Typesupport is
 

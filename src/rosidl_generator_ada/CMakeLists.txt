@@ -24,10 +24,11 @@ find_package(rclada_common REQUIRED)
 
 
 # Generate autobinding for std types and rosidl_typesupport_c
+ada_import_c_libraries(${std_msgs_LIBRARIES})
 
-ada_find_include_dir(_builtin_include ${builtin_interfaces_DIR})
-ada_find_include_dir(_stdmsgs_include ${std_msgs_DIR})
-ada_find_include_dir(_generator_include ${rosidl_generator_c_DIR})
+ada_find_package_include_dir(_builtin_include ${builtin_interfaces_DIR})
+ada_find_package_include_dir(_stdmsgs_include ${std_msgs_DIR})
+ada_find_package_include_dir(_generator_include ${rosidl_generator_c_DIR})
 
 file(GLOB _headers
         "${_builtin_include}/builtin_interfaces/msg/*.h"

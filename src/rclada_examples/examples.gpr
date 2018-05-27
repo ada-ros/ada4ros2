@@ -1,5 +1,4 @@
 with "rcl";
-with "rosidl_std_msgs";
 
 project Examples is
 
