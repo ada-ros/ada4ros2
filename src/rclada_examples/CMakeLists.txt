@@ -21,7 +21,7 @@ find_package(rclada REQUIRED)
 
 ###########################################################################
 
-ada_add_executable(listener ${PROJECT_SOURCE_DIR} bin/listener)
+ada_add_executable(${PROJECT_SOURCE_DIR} bin listener)
 
 ada_export_package()
 

@@ -1,9 +1,9 @@
 message("Ada CMake extensions loaded (${PROJECT_NAME}) v${PROJECT_VERSION}")
 
-function(ada_add_executable TARGET SRCFOLDER OUTFILE)
-# TARGET: executable name without paths
+function(ada_add_executable SRCFOLDER OUTDIR #[[ targets ]])
 # SRCFOLDER: the path to the GPR-containing project
-# OUTFILE: relative path in SRCFOLDER where the real target is built
+# OUTFOLDER: relative path in SRCFOLDER where the real targets are built
+# TARGETS: each executable name built by this project, without path
 
     get_filename_component(_basename ${SRCFOLDER} NAME)
     set(_workspace ${PROJECT_BINARY_DIR}/${_basename})
@@ -12,12 +12,10 @@ function(ada_add_executable TARGET SRCFOLDER OUTFILE)
     file(COPY ${SRCFOLDER}
             DESTINATION ${PROJECT_BINARY_DIR})
 
-    # Fake exec to be able to install an executable target
-    add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
-
+    # the target that builds the Ada project
     add_custom_target(
-            ${TARGET}_phony
-            ALL
+            ${_basename}_phony
+            # ALL
             WORKING_DIRECTORY ${_workspace}
 
             COMMAND gprbuild
@@ -25,17 +23,32 @@ function(ada_add_executable TARGET SRCFOLDER OUTFILE)
                 -aP ${ADA_GPRIMPORT_DIR}
                 -p -j0
 
-            COMMAND ${CMAKE_COMMAND} -E remove -f ${PROJECT_BINARY_DIR}/${TARGET}
-            COMMAND ${CMAKE_COMMAND} -E copy ${_workspace}/${OUTFILE} ${PROJECT_BINARY_DIR}/${TARGET}
-
-            COMMENT "${TARGET} Ada target built"
+            COMMENT "${_basename} Ada target built"
     )
 
-    # ensure the Ada target is built after the "fake" (but real) cmake one
-    add_dependencies(${TARGET}_phony ${TARGET})
+    foreach(TARGET ${ARGN})
+        # Fake exec to be able to install an executable target
+        add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
 
-    # must go into "lib" or ros bash completion misses it (duh)
-    install(TARGETS ${TARGET} DESTINATION lib/${PROJECT_NAME}/)
+        # Copy each executable in place
+        add_custom_command(
+                TARGET ${TARGET}
+                POST_BUILD
+                WORKING_DIRECTORY ${_workspace}
+                COMMAND ${CMAKE_COMMAND} -E remove -f ${PROJECT_BINARY_DIR}/${TARGET}
+                COMMAND ${CMAKE_COMMAND} -E copy
+                    ${_workspace}/${OUTDIR}/${TARGET}
+                    ${PROJECT_BINARY_DIR}/${TARGET}
+                COMMENT "${TARGET} Ada binary put in place"
+        )
+
+        # ensure the Ada project is built before so the post-command works
+        # make the copy in place after building
+        add_dependencies(${TARGET} ${_basename}_phony)
+
+        # must go into "lib" or ros bash completion misses it (duh)
+        install(TARGETS ${TARGET} DESTINATION lib/${PROJECT_NAME}/)
+    endforeach()
 
 endfunction()
 
