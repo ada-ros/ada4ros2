@@ -21,27 +21,9 @@ find_package(rclada REQUIRED)
 
 ###########################################################################
 
-#ada_add_executable(listener examples.gpr bin/listener)
+ada_add_executable(listener ${PROJECT_SOURCE_DIR} bin/listener)
 
-#add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
-
-add_custom_target(
-        listener
-        ALL
-        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-
-        COMMAND gprbuild
-          -P ${PROJECT_SOURCE_DIR}/examples.gpr
-          -aP ${ADA_GPR_DIR}
-          -aP ${ADA_GPRIMPORT_DIR}
-          -p -j0 -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
-
-        COMMAND ${CMAKE_COMMAND} -E copy bin/listener listener
-
-        COMMENT "listener Ada target created"
-)
-
-install(FILES listener DESTINATION bin/${PROJECT_NAME}/)
+ada_export_package()
 
 #get_cmake_property(_variableNames VARIABLES)
 #list (SORT _variableNames)

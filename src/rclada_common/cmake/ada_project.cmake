@@ -1,41 +1,32 @@
 message("Ada CMake extensions loaded (${PROJECT_NAME}) v${PROJECT_VERSION}")
 
-function(ada_add_executable TARGET GPRFILE OUTFILE)
-    # TARGET is a plain name of an executable target
-    # GPRFILE is the GPR project file that builds OUTFILE
-    # OUTFILE is where the real TARGET is built, relative to the BUILD root of the package
-    #    Also, OUTFILE must be out of said root to avoid conflicts
+function(ada_add_executable TARGET SRCFOLDER OUTFILE)
+# TARGET: executable name without paths
+# SRCFOLDER: the path to the GPR-containing project
+# OUTFILE: relative path in SRCFOLDER where the real target is built
 
-    # This operates as follows:
-    # 1. A real executable target is created with a fake source
-    # 2. A custom target launchs the Ada build via GPRBUILD
-    # 3. The fake executable is deleted
-    # 4. The real executable is copied into place
-    # 5. A regular install command does the rest
+    get_filename_component(_basename ${SRCFOLDER} NAME)
+    set(_workspace ${PROJECT_BINARY_DIR}/${_basename})
 
-    # A side effect seems to be that the custom target is executed twice,
-    #   one inconditionally and another as dependency of the fake build.
-    # This is a negligible penalty since the Ada build detects nothing has changed.
+    # working space:
+    file(COPY ${SRCFOLDER}
+            DESTINATION ${PROJECT_BINARY_DIR})
 
-    # Arguably ExternalProject_Add would be more appropriate, but in this case
-    #   we need to stay within CMake "actual" targets so ros2 adds them as executables.
-
-    add_executable($TARGET $OUTFILE)
-
-    #add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
+    # Fake exec to be able to install an executable target
+    add_executable(${TARGET} ${ADA_RESOURCE_DIR}/rclada_fake_target.c)
 
     add_custom_target(
             ${TARGET}_phony
             ALL
-            WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+            WORKING_DIRECTORY ${_workspace}
 
             COMMAND gprbuild
-                -P ${PROJECT_SOURCE_DIR}/${GPRFILE}
-                -aP ${ADA_BUILD_DIR}/gpr
-                -p -j0 -XPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}
+                -aP ${ADA_GPR_DIR}
+                -aP ${ADA_GPRIMPORT_DIR}
+                -p -j0
 
-            COMMAND ${CMAKE_COMMAND} -E remove -f ${TARGET}
-            COMMAND ${CMAKE_COMMAND} -E copy ${OUTFILE} ${TARGET}
+            COMMAND ${CMAKE_COMMAND} -E remove -f ${PROJECT_BINARY_DIR}/${TARGET}
+            COMMAND ${CMAKE_COMMAND} -E copy ${_workspace}/${OUTFILE} ${PROJECT_BINARY_DIR}/${TARGET}
 
             COMMENT "${TARGET} Ada target built"
     )
@@ -43,9 +34,10 @@ function(ada_add_executable TARGET GPRFILE OUTFILE)
     # ensure the Ada target is built after the "fake" (but real) cmake one
     add_dependencies(${TARGET}_phony ${TARGET})
 
-    install(TARGETS ${TARGET} DESTINATION bin/${PROJECT_NAME}/)
+    # must go into "lib" or ros bash completion misses it (duh)
+    install(TARGETS ${TARGET} DESTINATION lib/${PROJECT_NAME}/)
 
-endfunction(ada_add_executable)
+endfunction()
 
 
 function(add_ada_library TARGET SRCFOLDER)
@@ -186,13 +178,19 @@ function(ada_import_c_libraries #[[ ARGN ]])
     # One GPR file per path will be generated
 
     foreach(_lib ${ARGN})
+        # Obtain name
         get_filename_component(_ext_lib_name ${_lib} NAME_WE)
         string(REPLACE lib "" _ext_lib_name ${_ext_lib_name})
         string(REPLACE "__" "_" _ext_safe_name ${_ext_lib_name})
 
+        # Obtain path
         get_filename_component(_ext_lib_path ${_lib} DIRECTORY)
 
-        message("XXXXXXXXXXXXXX ${_ext_lib_name}")
+        # Sibling include
+        get_filename_component(_ext_lib_include ${_ext_lib_path} DIRECTORY)
+        set(_ext_lib_include ${_ext_lib_include}/include)
+
+        #message("XXXXXXXXXXXXXX ${_ext_lib_name}")
         #message("XXXXXXXXXXXXXX ${_ext_lib_path}")
 
         configure_file(
