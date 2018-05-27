@@ -10,7 +10,10 @@ project Examples is
    for Exec_Dir    use "bin";
    for Library_Dir use "lib";
 
-   for Main use ("listener.adb", "c_listener.c");
+   for Main use (
+                 "listener_raw.adb"
+                 --  "c_listener.c" -- Just to check that C calls work
+                );
 
    package Builder is
       for Switches ("ada") use ("-j0", "-g");

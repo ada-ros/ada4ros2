@@ -5,6 +5,13 @@ package body RCL.Logging is
    Autoshut : Utils.Initshut (On_Initialize => null,
                               On_Finalize   => Shutdown'Access) with Unreferenced;
 
+   Global_Name : access String := new String'("");
+
+   procedure Set_Name (Name : String) is
+   begin
+      Global_Name := new String'(Name);
+   end Set_Name;
+
    ---------
    -- Log --
    ---------
@@ -18,20 +25,15 @@ package body RCL.Logging is
    is
       pragma Unreferenced (Locate);
 
-      Function_Name : C_String := To_C (Location.Subprogram);
-      File_Name     : C_String := To_C (Location.File_Name);
-      Cname         : C_String := To_C (Name);
-      Format        : C_String := To_C (Message);
-
       Cloc : aliased constant Rcutils_Log_Location_T :=
-               (Function_Name.To_Ptr,
-                File_Name.To_Ptr,
+               (To_C (Location.Subprogram).To_Ptr,
+                To_C (Location.File_Name).To_Ptr,
                 C.Size_T (Location.Line_Number));
    begin
       Rcutils_Log (Cloc'Access,
                    C.Int (Severity),
-                   Cname.To_Ptr,
-                   Format.To_Ptr);
+                   To_C ((if Name /= "" then Name else Global_Name.all)).To_Ptr,
+                   To_C (Message).To_Ptr);
    end Log;
 
 

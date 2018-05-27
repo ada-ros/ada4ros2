@@ -13,6 +13,9 @@ package RCL.Logging with Elaborate_Body is
    
    No_Location : constant Log_Location;
    
+   procedure Set_Name (Name : String);
+   --  A global name can be set that will be used when no other name is given
+   
    function Location (Subprogram  : String;
                       File_Name   : String;
                       Line_Number : Natural) return Log_Location;

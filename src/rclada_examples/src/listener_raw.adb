@@ -1,5 +1,3 @@
-with Ada.Streams; use Ada.Streams;
-
 with Interfaces.C.Strings;
 
 with RCL.Logging;
@@ -10,12 +8,21 @@ with Std_Msgs_Msg_String_Ufunctions_H; use Std_Msgs_Msg_String_Ufunctions_H;
 with Std_Msgs_Msg_String_Ustruct_H; use Std_Msgs_Msg_String_Ustruct_H;
 with std_msgs_msg_string_utype_support_h; use std_msgs_msg_string_utype_support_h;
 
-procedure Listener is
+-- This example is using the automatic C low-level bindings
+-- It is also not using any of the callback features, so it is not able to
+--   adapt to message rates in the source.
+-- It was using during development to ensure that the low level features work,
+--   but should not be taken as the example to follow.
+
+-- Of course, if you need something unavailable in the high-level binding, you
+--   can use the low-level one as necessary.
+
+procedure Listener_Raw is
    use RCL;
 
-   Buffer : aliased Stream_Element_Array (1 .. 10240);
    Msg : constant access Std_Msgs_U_Msg_U_String := Std_Msgs_U_Msg_U_String_U_Create;
 begin
+   Logging.Set_Name ("listener_raw");
    Logging.Info ("Node starting...");
 
    declare
@@ -48,4 +55,4 @@ begin
    end;
 
    Logging.Info ("Node shut down");
-end Listener;
+end Listener_Raw;

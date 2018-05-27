@@ -1,6 +1,6 @@
 with Ada.Unchecked_Conversion;
 
-with RCL.Logging;
+--  with RCL.Logging;
 
 with Rcl_Types_H; use Rcl_Types_H;
 with Rmw_Types_H; use Rmw_Types_H;
