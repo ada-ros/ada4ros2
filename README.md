@@ -50,7 +50,7 @@ These statuses refer to the high-level binding; the low-level one is always gene
 - Main features:
     - `RCL.Node`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Publisher`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
-    - `RCL.Subscription`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+    - `RCL.Subscription`: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+)
     - `RCL.Client`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
     - `RCL.Service`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)    
 - Support:
@@ -63,8 +63,13 @@ Note that some features of the C RCL that are natively supported by Ada (e.g., c
 
 #### IDL message generator for Ada
 
-- Simple types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
-- Composite types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+- Dynamic access: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+)
+  - Simple types: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+)
+  - Array types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+  - Nested types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+- Static access:
+  - Simple types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+  - Nested types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
 
 #### ColCon integration
 
