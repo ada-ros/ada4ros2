@@ -1,0 +1,12 @@
+[submodule "src/rclada"]
+	path = src/rclada
+	url = https://github.com/ada-ros/rclada.git
+[submodule "src/rclada_common"]
+	path = src/rclada_common
+	url = https://github.com/ada-ros/rclada_common.git
+[submodule "src/rclada_examples"]
+	path = src/rclada_examples
+	url = https://github.com/ada-ros/rclada_examples.git
+[submodule "src/rosidl_generator_ada"]
+	path = src/rosidl_generator_ada
+	url = https://github.com/ada-ros/rosidl_generator_ada.git

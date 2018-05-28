@@ -1,5 +1,0 @@
-package rosidl_generator_c.x86_64_linux_gnu_bits_stdint_uintn_h is
-
-   
-
-end rosidl_generator_c.x86_64_linux_gnu_bits_stdint_uintn_h;
