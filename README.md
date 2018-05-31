@@ -66,7 +66,7 @@ These statuses refer to the high-level binding; the low-level one is always gene
 
 - Main features:
     - `RCL.Node`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Publisher`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+    - `RCL.Publisher`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Subscription`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Client`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
     - `RCL.Service`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)    
