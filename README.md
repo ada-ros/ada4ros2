@@ -83,9 +83,10 @@ Note that some features of the C RCL that are natively supported by Ada (e.g., c
 - Dynamic access: 
   - Simple types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
   - Array types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
-  - Nested types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+  - Nested types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
 - Static access:
   - Simple types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+  - Array types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
   - Nested types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
 
 #### ColCon integration
