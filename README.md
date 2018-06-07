@@ -68,8 +68,8 @@ These statuses refer to the high-level binding; the low-level one is always gene
     - `RCL.Node`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Publisher`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Subscription`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Client`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
-    - `RCL.Service`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)    
+    - `RCL.Client`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
+    - `RCL.Service`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)   
 - Support:
     - `RCL.Allocators`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
     - `RCL.Executors`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
@@ -83,11 +83,13 @@ Note that some features of the C RCL that are natively supported by Ada (e.g., c
 #### ROSIDL message support for Ada
 
 - Dynamic access: 
+  - Typesupport: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
   - Simple types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
   - Nested types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
   - Array types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
   - Matrix types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
 - Static access:
+  - Typesupport: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
   - Simple types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
   - Nested types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
   - Array types: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
