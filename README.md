@@ -4,6 +4,7 @@ Main repository of the ada-ros project. Currently available for linux. A recent 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
 
 ## Instructions
+This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the gnat and gprbuild packages should be enough in Ubuntu/Debian.
 
 1. Follow the official instructions to install ROS2. This project has been tested using the "[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" way.
 1. Clone this repository with submodules: `$ git clone --recurse-submodules`.
