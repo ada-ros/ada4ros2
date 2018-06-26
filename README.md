@@ -73,7 +73,7 @@ These statuses refer to the high-level binding; the low-level one is always gene
 - Support:
     - `RCL.Allocators`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
     - `RCL.Calendar`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Executors`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+    - `RCL.Executors`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Graph`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)    
     - `RCL.Timer`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Wait`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
