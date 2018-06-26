@@ -4,7 +4,7 @@ Main repository of the ada-ros project. Currently available for linux. A recent 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
 
 ## Instructions
-This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the gnat and gprbuild packages should be enough in Ubuntu/Debian.
+This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
 1. Follow the official instructions to install ROS2. This project has been tested using the "[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" way.
 1. Clone this repository with submodules: `$ git clone --recurse-submodules`.
@@ -12,7 +12,7 @@ This project relies on the system's default Ada compiler, which nowadays is GNAT
 1. Source the ./install/local_setup.bash script (or the one right for you).
 1. Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
 
-Alternatively, you can import with vcs the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay:
+Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay:
 
 1. Detailed instructions to come soon.
 
@@ -111,6 +111,7 @@ These statuses refer to the high-level binding; the low-level one is always gene
     - `RCL.Calendar`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Executors`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Graph`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)    
+    - `RCL.Options`: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+) (always default QoS)
     - `RCL.Timer`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Wait`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
 
