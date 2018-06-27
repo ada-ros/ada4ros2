@@ -20,8 +20,8 @@ Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.github
 
 Assuming, you have successfully built the ada4ros2 overlay and sourced it, you can run its examples and self-test node to ensure it works as expected:
 
-- `ros2 run rclada rclada_selftest`: 
-    - Node that checks all rclada binding features.
+- `ros2 run rclada rclada_selftest`: tests all rclada binding features.
+- `ros2 run rclada_test_multicore <n>`: tests the pooled executor, with _n_ threads.    
 
 - `ros2 run rclada_examples <executable>`, which executable one of:
     - talker, listener, add_two_ints_server, add_two_ints_client[_async]: examples compatible with the ones in the demo_nodes_cpp/demo_nodes_py packages.
