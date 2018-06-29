@@ -107,15 +107,13 @@ These statuses refer to the high-level binding; the low-level one is always gene
     - `RCL.Client`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Service`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)   
 - Support:
-    - `RCL.Allocators`: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
+    - `RCL.Allocators`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Calendar`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Executors`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Graph`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)    
     - `RCL.Options`: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+) (always default QoS)
     - `RCL.Timer`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
     - `RCL.Wait`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-
-Note that some features of the C RCL that are natively supported by Ada (e.g., concurrency and real-time) are low-priority and may remain unported if no clear need arises.
 
 #### ROSIDL message support for Ada
 
