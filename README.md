@@ -1,5 +1,5 @@
 # ada4ros2
-Main repository of the ada-ros project. Currently available for linux. A recent GNAT compiler is necessary (debian testing or Ubuntu 17.10+).
+Main repository of the RCLAda project. Currently available for linux. A recent GNAT compiler is necessary (debian testing or Ubuntu 17.10+).
 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
 
