@@ -1,5 +1,5 @@
 # ada4ros2
-Main repository of the ada-ros project. Currently available for linux. A recent GNAT compiler is necessary (debian testing or Ubuntu 17.10+).
+Main repository of the RCLAda project. Currently available for linux. A recent GNAT compiler is necessary (debian testing or Ubuntu 17.10+).
 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
 
@@ -22,6 +22,7 @@ Assuming, you have successfully built the ada4ros2 overlay and sourced it, you c
 
 - `ros2 run rclada rclada_selftest`: tests all rclada binding features.
 - `ros2 run rclada_test_multicore <n>`: tests the pooled executor, with _n_ threads.    
+- `ros2 run rclada_test_allocators <n>`: tests the pooled executor, with _n_ threads, using a custom allocator from the Ada compiler that reports memory use statistics.
 
 - `ros2 run rclada_examples <executable>`, which executable one of:
     - talker, listener, add_two_ints_server, add_two_ints_client[_async]: examples compatible with the ones in the demo_nodes_cpp/demo_nodes_py packages.
