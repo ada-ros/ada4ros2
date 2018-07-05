@@ -8,6 +8,7 @@ gpsauto*
 install
 install_isolated
 lib
+log
 obj
 
 .#*#
