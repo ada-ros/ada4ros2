@@ -1,15 +1,15 @@
 # ada4ros2
-Main repository of the RCLAda project. Currently available for linux. A recent GNAT compiler is necessary (debian testing or Ubuntu 17.10+).
+Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS, which is the distribution officially supported by ROS2 Bouncy.
 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
 
 ## Instructions
 This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
-1. Follow the official instructions to install ROS2. This project has been tested using the "[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" way.
-1. Clone this repository with submodules: `$ git clone --recurse-submodules`.
-1. Enter this repository root folder and issue `$ ament build`
-1. Source the ./install/local_setup.bash script (or the one right for you).
+1. Follow the official instructions to install ROS2 Bouncy ("[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" should work; there is a bug when using the [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) install that is on the works).
+1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
+1. Enter the repository root folder and issue `$ colcon build`
+1. Source the ./install/setup.bash script.
 1. Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
 
 Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay:
@@ -20,15 +20,16 @@ Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.github
 
 Assuming, you have successfully built the ada4ros2 overlay and sourced it, you can run its examples and self-test node to ensure it works as expected:
 
-- `ros2 run rclada rclada_selftest`: tests all rclada binding features.
-- `ros2 run rclada_test_multicore <n>`: tests the pooled executor, with _n_ threads.    
-- `ros2 run rclada_test_allocators <n>`: tests the pooled executor, with _n_ threads, using a custom allocator from the Ada compiler that reports memory use statistics.
+- `ros2 run rclada <test>`, with `<test>` one of:
+    - `rclada_selftest`: tests all message/service-related features.
+    - `rclada_test_multicore <n>`: tests the pooled executor, with _n_ threads.    
+    - `rclada_test_allocators <n>`: tests the pooled executor, with _n_ threads, using a custom allocator that reports memory use leaks/statistics.
 
 - `ros2 run rclada_examples <executable>`, which executable one of:
-    - talker, listener, add_two_ints_server, add_two_ints_client[_async]: examples compatible with the ones in the demo_nodes_cpp/demo_nodes_py packages.
-    - listener_metadata: as listener, but additionally dumps thorough metadata information about received messages
-    - graph_info: shows topological information about the topics/subscriptions/services.
-    - pong_class, pong_generic: nodes that send messages to each other illustrating the two ways of node extension in Ada, either using generics or using classwide inheritance.
+    - `talker, listener, add_two_ints_server, add_two_ints_client[_async]`: examples compatible with the ones in the demo_nodes_cpp/demo_nodes_py packages.
+    - `listener_metadata`: as listener, but additionally dumps thorough metadata information about received messages
+    - `graph_info`: shows topological information about the topics/subscriptions/services.
+    - `pong_class, pong_generic`: nodes that send messages to each other illustrating the two ways of node extension in Ada, either using generics or using classwide inheritance.
 ## Creating Ada nodes
 
 Nodes can be entirely written in Ada, without the need for any C/C++ files or main program.
@@ -37,13 +38,18 @@ Please check the examples in the [rclada_examples](https://github.com/ada-ros/rc
 Ada code is compiled using gprbuild. This project provides some CMake functions to greatly simplify
 the inclusion of a GPR project in the ROS2 build process:
 
-- Your ROS2 package should use the **cmake** or **ament_cmake** build method of ament/colcon.
+- Your ROS2 package should use the **cmake** build method of `colcon`.
 - See the next section and the package `rclada_examples` to see the available CMake functions.
 
 ### cmake build type
 
-To simplify the integration of GPR-based Ada projects, the rclada package provides the following CMake functions (all of them starting with `ada_*`. The two first ones are the most important, and the rest could be useful for special Ada projects (like bindings):
+To simplify the integration of GPR-based Ada projects, the `rclada_common` package provides the following CMake functions (all of them starting with `ada_*`. The two first ones are the most important, and the rest could be useful for special Ada projects (like bindings):
 
+
+- `ada_begin_package()` must be called first after `find_package(rclada_common)` to initialize the package Ada environment.
+
+- `ada_end_package()` must be called last to ensure Ada environment settings are propagated.
+ 
 - `ada_add_executables(TARGET SRCDIR DSTDIR EXECUTABLES)` declares the Ada targets built by the package:
     - TARGET is a name on which other targets may depend.
     - SRCDIR is a relative path in the package containing an Ada/GPR project.
@@ -55,23 +61,18 @@ To simplify the integration of GPR-based Ada projects, the rclada package provid
     - SRCDIR (same as above)
     - GPRFILE: GPR library project which will be built and installed in the Ada environment.
 
-- `ada_export_package()`
-    - Similar to `ament_package`, must be called last to ensure Ada environment settings are propagated.
-
 - `ada_import_msgs(PKG_NAME)`
     - Force the generation of the Ada specification files corresponding to messages and services in PKG_NAME. They are made available through a GPR project of name `ros2_typesupport_PKG_NAME.gpr`
-    - Note that if rclada is already installed in your workspace, any new .msg or .srv files will be automatically processed in their corresponding packages
+    - Note that if rclada is already installed in your workspace, any new .msg or .srv files will be automatically processed in their corresponding packages, so this call should not be necessary.
 
 - `ada_import_c_libraries(ARGN)`
-    - ARGN is a list of library files (*.so, *.a) that will be made available to the Ada environment as `clib_*` GPR project files.
+    - ARGN is a list of library files (*.so, *.a) that will be made available to the Ada environment as `clib_*` GPR project files. (E.g., for `libgsl.a` you obtain `clib_gsl.gpr`.)
 
-- `ada_generate_binding(TARGET SRCDIR GPRFILE INCLUDE)` generates a supporting low-level Ada binding for the given C header files, with `g++ -fdump-ada-spec`, that is integrated in a high-level Ada project:
+- `ada_generate_binding(TARGET SRCDIR GPRFILE INCLUDE)` generates a supporting low-level Ada binding for the given C header files, with `g++ -fdump-ada-spec`, that is integrated in a high-level Ada project. The project must provide a `gen` folder in which autogenerated sources will be placed before compilation. Check the [rclada's RCL project](https://github.com/ada-ros/rclada/tree/master/gpr_rcl) for an example.
     - TARGET (as above)
     - SRCDIR (as above), contains the high-level Ada project.
     - GPRFILE (as above)
-    - INCLUDE: semicolon-separated list of C headers
-
-[colcon](http://colcon.readthedocs.io/en/released/) is being deployed into ROS2, and the ada4ros2 project is awaiting for the first ROS2 version that includes it in its official documentation (see pull request [#168](https://github.com/ros2/design/pull/168)) to migrate any necessary facilities.
+    - INCLUDE: semicolon-separated list of C headers whose Ada specs will be autogenerated.
 
 ## Using the rclada ROS2 Client Library binding.
 
@@ -93,7 +94,9 @@ Additionally, there is both a high-level and low-level binding to `rosidl` packa
 
 1. `ROSIDL.*` packages are used by `RCL.*`, and by users to deal with messages/services.
 1. The low level bindings to `rosidl_generator_c`, `rosidl_typesupport_c`, and `rosidl_typesupport_introspection_c` 
-are too autogenerated, and should not be needed unless you use something from `RCLx.*`, which should not be the case.
+are too autogenerated, and should not be needed unless you use something from `RCLx.*`, which should be a last resort (there is no foreseeable need at present).
+
+All examples provided use exclusively the `RCL.*` and `ROSIDL.*` hierarchies.
 
 ### Implementation status
 
@@ -135,7 +138,8 @@ These statuses refer to the high-level binding; the low-level one is always gene
 
 - cmake build type: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+)
   - Stand-alone executables: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-  - Exportable libraries: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+) (Only Ada nodes can directly use other Ada libraries (via project files). Of course, node interaction through message/services is possible with any language nodes.
+  - Export libraries to Ada clients: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
+  - Export libraries to C-compatible clients: Pending ![red](https://placehold.it/8/ff0000/000000?text=+)
 
 ## Extras
 
