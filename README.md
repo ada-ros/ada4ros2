@@ -1,7 +1,7 @@
 # ada4ros2
 Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS, which is the distribution officially supported by ROS2 Bouncy and with a recent enough Ada compiler.
 
-This repository is actually a ROS2 workspace. It can be checked out directly and compiled as a regular ROS2 overlay.
+This repository is actually a ROS2 workspace. It can be checked out directly and compiled as a regular ROS2 overlay. Package repositories are brought in as submodules and are individually available at https://github.com/ada-ros/
 
 ## Instructions
 This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
