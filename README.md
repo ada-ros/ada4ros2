@@ -38,7 +38,8 @@ Please check the examples in the [rclada_examples](https://github.com/ada-ros/rc
 Ada code is compiled using gprbuild. This project provides some CMake functions to greatly simplify
 the inclusion of a GPR project in the ROS2 build process:
 
-- Your ROS2 package should use the **cmake** build method of `colcon`.
+- Your ROS2 package should use the **ament_cmake** build method of `colcon`.
+- You must not call the `ament_package()` macro, rclada does it for you.
 - See the next section and the package `rclada_examples` to see the available CMake functions.
 
 ### cmake build type
