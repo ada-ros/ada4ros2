@@ -1,7 +1,7 @@
 # ada4ros2
-Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS, which is the distribution officially supported by ROS2 Bouncy.
+Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS, which is the distribution officially supported by ROS2 Bouncy and with a recent enough Ada compiler.
 
-This repository is actually a ROS2 workspace. It can be checked out directly and compiled as any other ROS2 overlay.
+This repository is actually a ROS2 workspace. It can be checked out directly and compiled as a regular ROS2 overlay.
 
 ## Instructions
 This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
@@ -30,9 +30,10 @@ Assuming, you have successfully built the ada4ros2 overlay and sourced it, you c
     - `listener_metadata`: as listener, but additionally dumps thorough metadata information about received messages
     - `graph_info`: shows topological information about the topics/subscriptions/services.
     - `pong_class, pong_generic`: nodes that send messages to each other illustrating the two ways of node extension in Ada, either using generics or using classwide inheritance.
+
 ## Creating Ada nodes
 
-Nodes can be entirely written in Ada, without the need for any C/C++ files or main program.
+Nodes can be entirely written in Ada, without the need for C/C++ files or main program.
 Please check the examples in the [rclada_examples](https://github.com/ada-ros/rclada_examples) repository for some ideas.
 
 Ada code is compiled using gprbuild. This project provides some CMake functions to greatly simplify
@@ -81,7 +82,7 @@ To simplify the integration of GPR-based Ada projects, the `rclada_common` packa
 
 ## Using the rclada ROS2 Client Library binding.
 
-The library is provided by the rclada package. However, your package must depend on all of:
+The library is provided by the `rclada` ROS2 package. However, your package must depend on all of:
 - `rclada_common`, which provides the CMake functions.
 - `rosidl_generator_ada`, which provides the interfaces to ROS2 messages.
 - `rclada`, which provides the Ada binding.
