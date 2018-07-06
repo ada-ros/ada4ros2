@@ -1,8 +1,17 @@
 aggregate project Ada4ROS2 is
 
-   --  We use here the build directories:
+   for Create_Missing_Dirs use "True";
 
-   for Project_Path use ("install/share/gprimport",
+   --  For this project to be usable you MUST first do a colcon build
+
+   for Project_Path use (
+                         --  Auto imports generated during colcon build
+                         "install/rclada_common/share/gprauto",
+                         "install/rosidl_generator_ada/share/gprauto",
+                         "install/rclada/share/gprauto",
+                         "install/rclada_examples/share/gprauto",
+
+                         --  Our projects
                          "src/rclada_common/gpr_c_builtins",
                          "src/rosidl_generator_ada/gpr_c_typesupport",
                          "src/rosidl_generator_ada/gpr_rosidl",
@@ -11,7 +20,11 @@ aggregate project Ada4ROS2 is
                          "src/rclada/gpr_rcl"
                         );
 
+   --  Root project files usable by clients
+
    for Project_Files use (
+                          "src/rclada_common/gpr_c_builtins/c_builtins.gpr",
+                          "src/rosidl_generator_ada/gpr_c_typesupport/c_typesupport.gpr",
                           "src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
                           "src/rclada/gpr_rcl/rcl.gpr",
                           "src/rclada/gpr_selftest/rcl_selftest.gpr",
