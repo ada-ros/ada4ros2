@@ -6,7 +6,7 @@ This repository is actually a ROS2 workspace. It can be checked out directly and
 ## Instructions
 This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
-1. Follow the official instructions to install ROS2 Bouncy ("[from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup)" should work; there is a bug when using the [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) install that is on the works).
+1. Follow the official instructions to install ROS2 Bouncy (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
 1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
 1. Enter the repository root folder and issue `$ colcon build`
 1. Source the ./install/setup.bash script.
