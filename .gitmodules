@@ -10,3 +10,6 @@
 [submodule "src/rosidl_generator_ada"]
 	path = src/rosidl_generator_ada
 	url = https://github.com/ada-ros/rosidl_generator_ada.git
+[submodule "src/rclada_client_skeleton"]
+	path = src/rclada_client_skeleton
+	url = https://github.com/ada-ros/rclada_client_skeleton.git
