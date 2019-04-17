@@ -1,10 +1,10 @@
 # ada4ros2
-Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS, which is the distribution officially supported by ROS2 Bouncy and with a recent enough Ada compiler.
+Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS and ROS2 Bouncy. Porting to ROS2 Crystal is in the works.
 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as a regular ROS2 overlay. Package repositories are brought in as submodules and are individually available at https://github.com/ada-ros/
 
 ## Instructions
-This project relies on the system's default Ada compiler, which nowadays is GNAT FSF 7. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
+This project relies on the system's default Ada compiler, which is GNAT FSF 7.3 in Ubuntu 18.04. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
 1. Follow the official instructions to install ROS2 Bouncy (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
 1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
@@ -36,8 +36,9 @@ Assuming, you have successfully built the ada4ros2 overlay and sourced it, you c
 Nodes can be entirely written in Ada, without the need for C/C++ files or main program.
 Please check the examples in the [rclada_examples](https://github.com/ada-ros/rclada_examples) repository for some ideas.
 
-Ada code is compiled using gprbuild. This project provides some CMake functions to greatly simplify
-the inclusion of a GPR project in the ROS2 build process:
+Ada code is compiled using gprbuild. Once you have succesfully run `colcon build`, you can use the aggregate project file `ada4ros2.gpr`, in the root folder, as a starting point for development. This file includes all RCLAda libraries and a sample user project. The file is designed to be open with the GPS editor from GNAT, and to develop Ada code without going through the `colcon build` process every time. Compilation can be launched directly from GPS and should succeed.
+
+While developing in GPS is a convenience, the final package build is to be done through `colcon`, as with any other ROS2 package. This project provides some CMake functions to greatly simplify the inclusion of a GPR project in the ROS2 build process:
 
 - Your ROS2 package should use the **ament_cmake** build method of `colcon`.
 - You must not call the `ament_package()` macro, rclada does it for you.
