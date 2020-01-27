@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tmux new-session "echo Launching ROSCORE...; source ros1; roscore" \;\
+    split-window -h "echo 'Briging ROS1 <-> ROS2...'; source ros2; source ros1; sleep 5s; ros2 run ros1_bridge dynamic_bridge" \; \
+    select-pane -t 0 \;\
+    split-window -v "echo Press enter to launch turtlesim; source ros1; read; rosrun turtlesim turtlesim_node" \;\
+    select-pane -t 1 \;\
+    split-window -v "echo Log of /turtle1/cmd_vel; sleep 5s; source ros1; rostopic echo /turtle1/cmd_vel" \;\
+    select-pane -t 3 \;\
+    split-window -v "echo Press enter to launch Ada turtle commander...; source ros2; read; ros2 run rclada_fosdem20 turtlesim_command /turtle1/cmd_vel" \; \
+    select-pane -t 1 \;\
