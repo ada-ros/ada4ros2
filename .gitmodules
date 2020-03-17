@@ -13,3 +13,6 @@
 [submodule "src/rclada_client_skeleton"]
 	path = src/rclada_client_skeleton
 	url = https://github.com/ada-ros/rclada_client_skeleton.git
+[submodule "src/rclada_fosdem20"]
+	path = src/rclada_fosdem20
+	url = https://github.com/ada-ros/rclada_fosdem20
