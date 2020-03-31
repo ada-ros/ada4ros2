@@ -1,20 +1,22 @@
 # ada4ros2
-Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS and ROS2 Bouncy. Porting to ROS2 Crystal is in the works.
+Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS and ROS2 Dashing.
 
 This repository is actually a ROS2 workspace. It can be checked out directly and compiled as a regular ROS2 overlay. Package repositories are brought in as submodules and are individually available at https://github.com/ada-ros/
 
 ## Instructions
-This project relies on the system's default Ada compiler, which is GNAT FSF 7.3 in Ubuntu 18.04. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
+This project relies on the system's default Ada compiler, which is GNAT FSF 7 in Ubuntu 18.04. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
-1. Follow the official instructions to install ROS2 Bouncy (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
+1. Follow the official instructions to install ROS2 Dashing (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
 1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
 1. Enter the repository root folder and issue `$ colcon build`
 1. Source the ./install/setup.bash script.
 1. Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
 
-Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay:
+Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay.
 
-1. Detailed instructions to come soon.
+1. Download the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file to the folder you're using as workspace.
+1. Run `vcs import src < ada4ros2.repos`
+1. Continue as in the above list from `colcon build`.
 
 ## Testing your installation
 
