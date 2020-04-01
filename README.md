@@ -181,9 +181,11 @@ This project is done with the support of the following entities:
 * AdaCore, provider of the open source Ada 2012 compiler https://www.adacore.com/community
 * The Robotics, Perception and Real-Time group, RoPeRT, http://robots.unizar.es
 * The Defense University Center of Zaragoza, CUD-Z, http://cud.unizar.es
+* The ROSIN project, whose funding has enabled the porting from Bouncy to Dashing and continued development to reach feature parity during year 2020. https://rosin-project.eu/results
 
 <p align="center">  
-<a href="https://www.adacore.com/community"><img src="http://beta.electronicdesign.com/sites/electronicdesign.com/files/Adacore_Logo_Cropped.jpg" height="33"></a>
-<a href="http://robots.unizar.es"><img src="http://robots.unizar.es/wp/wp-content/themes/YellowMagazine/images/logo.png" height="33"></a>
-<a href="http://cud.unizar.es"><img src="http://cud.unizar.es/sites/default/files/imagenes/CUDlogolargo_alta.jpg" height="33"></a>
+<a href="https://www.adacore.com/community"><img src="https://www.microsemi.com/images/soc/Mi-VEcosystem/AdaCoreLogo-Master_LogoTagline-Color.png" height="48"></a>
+<a href="http://robots.unizar.es"><img src="http://robots.unizar.es/wp/wp-content/themes/YellowMagazine/images/logo.png" height="48"></a>
+<a href="http://cud.unizar.es"><img src="http://cud.unizar.es/sites/default/files/imagenes/CUDlogolargo_alta.jpg" height="48"></a>
+<a href="https://rosin-project.eu/"><img src="https://rosin-project.eu/wp-content/uploads/2017/03/Logo_ROSIN_CMYK-Website.png" height="48"></a>
 </p>
