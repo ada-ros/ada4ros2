@@ -1,0 +1,36 @@
+aggregate project Ada4ROS2Part is
+
+   for Create_Missing_Dirs use "True";
+
+   --  For this project to be usable you MUST first do a colcon build
+
+   for Project_Path use (
+                         --  Auto imports generated during colcon build
+                         "install/rclada_common/share/gprauto",
+                         "install/rosidl_generator_ada/share/gprauto",
+                         "install/rclada/share/gprauto",
+                         -- "install/rclada_examples/share/gprauto",
+
+                         --  Our projects
+                         "src/rclada_common/gpr_c_builtins",
+                         "src/rosidl_generator_ada/gpr_c_typesupport",
+                         "src/rosidl_generator_ada/gpr_rosidl",
+                         "src/rosidl_generator_ada/gpr_rosidl/dl-ada",
+                         "src/rosidl_generator_ada/gpr_rosidl/dl-ada/cstrings",
+                         "src/rclada/gpr_rcl"
+                        );
+
+   --  Root project files usable by clients
+
+   for Project_Files use (
+                          "src/rclada_common/gpr_c_builtins/c_builtins.gpr",
+                          "src/rosidl_generator_ada/gpr_c_typesupport/c_typesupport.gpr",
+                          "src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
+                          "src/rclada/gpr_rcl/rcl.gpr",
+                          "src/rclada/gpr_selftest/rcl_selftest.gpr"
+                          -- "src/rclada_examples/examples.gpr",
+                          -- "src/rclada_client_skeleton/ada_project.gpr",
+                          -- "src/rclada_fosdem20/fosdem20.gpr"
+                         );
+
+end Ada4ROS2Part;
