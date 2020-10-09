@@ -1,4 +1,4 @@
-name: Check build
+name: Foxy CI
 
 on:
   push:
@@ -20,12 +20,12 @@ jobs:
     - name: Set up ROS2
       # Switch to https://github.com/ros-tooling/setup-ros/ at some point, seems broken right now
       run: > 
-        apt-get update &&
-        apt-get install curl gnupg2 lsb-release &&
-        curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - &&
-        sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list' &&
-        apt-get update &&
-        apt install ros-foxy-ros-base
+        sudo apt-get update &&
+        sudo apt-get install curl gnupg2 lsb-release &&
+        curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add - &&
+        sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list' &&
+        sudo apt-get update &&
+        sudo apt install ros-foxy-ros-base
 
     - name: Set up GNAT toolchain
       run: >
