@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Set up ROS2
       # Switch to https://github.com/ros-tooling/setup-ros/ at some point, seems broken right now
