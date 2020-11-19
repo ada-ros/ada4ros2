@@ -41,3 +41,9 @@ jobs:
       run: >
         source /opt/ros/foxy/setup.bash && 
         colcon build --event-handlers console_direct+ --executor sequential
+
+    - name: Run tests
+      run: >
+        source install/setup.bash &&
+        ros2 run rclada rclada_selftest &&
+        ros2 run rclada rclada_test_allocators
