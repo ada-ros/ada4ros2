@@ -45,6 +45,6 @@ jobs:
     - name: Run tests
       run: >
         ls -al install &&
-        source ${{ github.workspace }}/install/setup.bash &&
+        source ${{ github.workspace }}/install/setup.sh &&
         ros2 run rclada rclada_selftest &&
         ros2 run rclada rclada_test_allocators
