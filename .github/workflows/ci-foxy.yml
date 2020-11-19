@@ -28,9 +28,9 @@ jobs:
         sudo apt install ros-foxy-ros-base python3-colcon-ros
 
     - name: Set up GNAT toolchain
-      run: >
-        sudo apt-get update && 
-        sudo apt-get install gnat gprbuild
+      uses: ada-actions/toolchain@ce2020
+      with:
+        distrib: fsf
 
     - name: Build
       run: source /opt/ros/foxy/setup.bash && colcon build
