@@ -47,4 +47,4 @@ jobs:
         ls -al install &&
         source ${{ github.workspace }}/install/setup.sh &&
         ros2 run rclada rclada_selftest &&
-        ros2 run rclada rclada_test_allocators
+        ros2 run rclada rclada_test_allocators 4
