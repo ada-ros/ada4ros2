@@ -17,6 +17,11 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Set up GNAT toolchain
+      uses: ada-actions/toolchain@ce2020
+      with:
+        distrib: fsf
+
     - name: Set up ROS2
       # Switch to https://github.com/ros-tooling/setup-ros/ at some point, seems broken right now
       run: > 
@@ -27,10 +32,7 @@ jobs:
         sudo apt-get update &&
         sudo apt install ros-foxy-ros-base python3-colcon-ros
 
-    - name: Set up GNAT toolchain
-      uses: ada-actions/toolchain@ce2020
-      with:
-        distrib: fsf
-
     - name: Build
-      run: source /opt/ros/foxy/setup.bash && colcon build
+      run: >
+        source /opt/ros/foxy/setup.bash && 
+        colcon build --event-handlers console_direct+ --executor sequential
