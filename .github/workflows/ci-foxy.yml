@@ -1,0 +1,50 @@
+name: Foxy CI
+
+on:
+  schedule:
+    - cron: "0 4 1-7 * 1"
+    # First monday of the month, at 4am
+  push:
+    branches: [ foxy ]
+  pull_request:
+    branches: [ foxy ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Set up GNAT toolchain
+      uses: ada-actions/toolchain@ce2020
+      with:
+        distrib: fsf
+
+    - name: Set up ROS2
+      # Switch to https://github.com/ros-tooling/setup-ros/ at some point, seems broken right now
+      run: > 
+        sudo apt-get update &&
+        sudo apt-get install curl gnupg2 lsb-release &&
+        curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add - &&
+        sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list' &&
+        sudo apt-get update &&
+        sudo apt install ros-foxy-ros-base \
+                         ros-foxy-example-interfaces \
+                         python3-colcon-ros 
+
+    - name: Build
+      run: >
+        source /opt/ros/foxy/setup.bash && 
+        colcon build --event-handlers console_direct+ --executor sequential
+
+    - name: Run tests
+      run: >
+        ls -al install &&
+        source ${{ github.workspace }}/install/setup.sh &&
+        ros2 run rclada rclada_selftest &&
+        ros2 run rclada rclada_test_allocators 4

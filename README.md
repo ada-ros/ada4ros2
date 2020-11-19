@@ -1,3 +1,5 @@
+[![Foxy CI](https://github.com/ada-ros/ada4ros2/workflows/Foxy%20CI/badge.svg)](https://github.com/ada-ros/ada4ros2/actions)
+
 # ada4ros2
 Main repository of the RCLAda project. Currently available for Ubuntu 18.04 LTS and ROS2 Dashing.
 

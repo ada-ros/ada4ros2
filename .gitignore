@@ -12,6 +12,7 @@ log
 obj
 
 .#*#
+.*.sw?
 *.ali
 *.db
 *-loc.xml
