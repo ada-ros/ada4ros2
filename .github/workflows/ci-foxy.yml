@@ -1,6 +1,9 @@
 name: Foxy CI
 
 on:
+  schedule:
+    - cron: "0 4 1-7 * 1"
+    # First monday of the month, at 4am
   push:
     branches: [ foxy ]
   pull_request:
