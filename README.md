@@ -8,7 +8,7 @@ This repository is actually a ROS2 workspace. It can be checked out directly and
 ## Instructions
 This project relies on the system's default Ada compiler, which is GNAT FSF 7 in Ubuntu 18.04. Installing the `gnat` and `gprbuild` packages should be enough in Ubuntu/Debian.
 
-1. Follow the official instructions to install ROS2 Dashing (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
+1. Follow the official instructions to install ROS2 (either [binary](https://github.com/ros2/ros2/wiki/Linux-Install-Debians) or [from source](https://github.com/ros2/ros2/wiki/Linux-Development-Setup) should work).
    1. If installing from sources, you can use the contents of [ros2deps.txt](ros2deps.txt) to build only the necessary dependencies: `colcon build --packages-up-to $(cat ros2deps.txt)`. This will cut your build time in half.
 1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
 1. Enter the repository root folder and issue `$ colcon build`
