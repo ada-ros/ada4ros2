@@ -12,7 +12,8 @@ This project relies on the system's default Ada compiler, which is GNAT FSF 7 in
    1. If installing from sources, you can use the contents of [ros2deps.txt](ros2deps.txt) to build only the necessary dependencies: `colcon build --packages-up-to $(cat ros2deps.txt)`. This will cut your build time in half.
 1. Clone the [ada4ros2](https://github.com/ada-ros/ada4ros2) repository with submodules: `$ git clone --recurse-submodules`.
 1. Enter the repository root folder and issue `$ colcon build`
-1. Source the ./install/setup.bash script.
+   1. You may need to install package `python3-colcon-common-extensions` to make `colcon` available.
+1. Source the `./install/setup.bash` script.
 1. Try to run some example nodes: `$ ros2 run rclada_examples listener`. Tab completion should work too.
 
 Alternatively, you can import with `vcs` the [ada4ros2.repos](https://raw.githubusercontent.com/ada-ros/ada4ros2/master/ada4ros2.repos) file in this repository to prepare the Ada workspace overlay.
