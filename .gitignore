@@ -11,6 +11,7 @@ lib
 log
 obj
 .vscode/
+.vscode/*
 
 .#*#
 .*.sw?
