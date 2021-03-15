@@ -5,13 +5,7 @@ aggregate project Ada4ROS2Part is
    --  For this project to be usable you MUST first do a colcon build
 
    for Project_Path use (
-                         --  Auto imports generated during colcon build
-                         "install/rclada_common/share/gpr",
-                         "install/rosidl_generator_ada/share/gpr",
-                         "install/rclada/share/gpr",
-                         -- "install/rclada_examples/share/gpr",
-
-                         --  Our projects
+                         --  Our editable projects FIRST
                          "src/rclada_common/gpr_aaa",
                          "src/rclada_common/gpr_ament",
                          "src/rclada_common/gpr_c_builtins",
@@ -20,7 +14,12 @@ aggregate project Ada4ROS2Part is
                          "src/rosidl_generator_ada/gpr_rosidl",
                          "src/rosidl_generator_ada/gpr_rosidl/dl-ada",
                          "src/rosidl_generator_ada/gpr_rosidl/dl-ada/cstrings",
-                         "src/rclada/gpr_rcl"
+                         "src/rclada/gpr_rcl",
+
+                         --  Auto imports generated during colcon build LAST
+                         "install/rclada_common/share/gpr",
+                         "install/rosidl_generator_ada/share/gpr",
+                         "install/rclada/share/gpr"
                         );
 
    --  Root project files and Editable Subprojects

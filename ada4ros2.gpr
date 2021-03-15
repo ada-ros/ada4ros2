@@ -5,20 +5,20 @@ aggregate project Ada4ROS2 is
    --  For this project to be usable you MUST first do a colcon build
 
    for Project_Path use (
-                         --  Auto imports generated during colcon build
-                         "install/rclada_common/share/gprauto",
-                         "install/rosidl_generator_ada/share/gprauto",
-                         "install/rclada/share/gprauto",
-                         "install/rclada_examples/share/gprauto",
-
-                         --  Our projects
+                         --  Our projects FIRST so editable sources are picked up
                          "src/rclada_common/gpr_c_builtins",
                          "src/rosidl_generator_ada/gpr_c_typesupport",
                          "src/rosidl_generator_ada/gpr_generator",
                          "src/rosidl_generator_ada/gpr_rosidl",
                          "src/rosidl_generator_ada/gpr_rosidl/dl-ada",
                          "src/rosidl_generator_ada/gpr_rosidl/dl-ada/cstrings",
-                         "src/rclada/gpr_rcl"
+                         "src/rclada/gpr_rcl",
+
+                         --  Auto imports generated during colcon build last
+                         "install/rclada_common/share/gprauto",
+                         "install/rosidl_generator_ada/share/gprauto",
+                         "install/rclada/share/gprauto",
+                         "install/rclada_examples/share/gprauto"
                         );
 
    --  Root project files usable by clients
