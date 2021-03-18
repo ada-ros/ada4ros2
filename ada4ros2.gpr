@@ -6,6 +6,8 @@ aggregate project Ada4ROS2 is
 
    for Project_Path use (
                          --  Our projects FIRST so editable sources are picked up
+                         "src/rclada_common/gpr_aaa",
+                         "src/rclada_common/gpr_ament",
                          "src/rclada_common/gpr_c_builtins",
                          "src/rosidl_generator_ada/gpr_c_typesupport",
                          "src/rosidl_generator_ada/gpr_generator",
@@ -15,17 +17,15 @@ aggregate project Ada4ROS2 is
                          "src/rclada/gpr_rcl",
 
                          --  Auto imports generated during colcon build last
-                         "install/rclada_common/share/gprauto",
-                         "install/rosidl_generator_ada/share/gprauto",
-                         "install/rclada/share/gprauto",
-                         "install/rclada_examples/share/gprauto"
+                         "install/rclada_common/share/gpr",
+                         "install/rosidl_generator_ada/share/gpr",
+                         "install/rclada/share/gpr",
+                         "install/rclada_examples/share/gpr"
                         );
 
    --  Root project files usable by clients
 
    for Project_Files use (
-                          "src/rclada_common/gpr_c_builtins/c_builtins.gpr",
-                          "src/rosidl_generator_ada/gpr_c_typesupport/c_typesupport.gpr",
                           "src/rosidl_generator_ada/gpr_generator/generator.gpr",
                           "src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
                           "src/rclada/gpr_rcl/rcl.gpr",
