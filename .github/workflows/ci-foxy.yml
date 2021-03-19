@@ -5,8 +5,9 @@ on:
     - cron: "0 4 1-7 * 1"
     # First monday of the month, at 4am
   push:
-    branches: [ foxy ]
+#    branches: [ foxy ]
   pull_request:
+#    branches: [ foxy ]
 
 jobs:
   build:
