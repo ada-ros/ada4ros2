@@ -184,7 +184,7 @@ This project is done with the support of the following entities:
 * AdaCore, provider of the open source Ada 2012 compiler https://www.adacore.com/community
 * The Robotics, Perception and Real-Time group, RoPeRT, http://robots.unizar.es
 * The Defense University Center of Zaragoza, CUD-Z, http://cud.unizar.es
-* The ROSIN project, whose funding has enabled the porting from Bouncy to Dashing and continued development to reach feature parity during year 2020. https://rosin-project.eu/results
+* The ROSIN project, whose funding has enabled the porting from Bouncy to Dashing and Foxy, and continued development to reach feature parity during early 2021. https://rosin-project.eu/results
 
 <p align="center">  
 <a href="https://www.adacore.com/community"><img src="https://www.microsemi.com/images/soc/Mi-VEcosystem/AdaCoreLogo-Master_LogoTagline-Color.png" height="48"></a>
