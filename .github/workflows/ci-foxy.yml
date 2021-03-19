@@ -7,7 +7,6 @@ on:
   push:
     branches: [ foxy ]
   pull_request:
-    branches: [ foxy ]
 
 jobs:
   build:
