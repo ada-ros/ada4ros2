@@ -1,0 +1,36 @@
+aggregate project TF2dev is
+
+   for Create_Missing_Dirs use "True";
+
+   --  For this project to be usable you MUST first do a colcon build
+
+   for Project_Path use (
+                         --  Our projects FIRST so editable sources are picked up
+                         "../src/rclada_common/gpr_aaa",
+                         "../src/rclada_common/gpr_ament",
+                         "../src/rclada_common/gpr_c_builtins",
+                         "../src/rosidl_generator_ada/gpr_c_typesupport",
+                         "../src/rosidl_generator_ada/gpr_generator",
+                         "../src/rosidl_generator_ada/gpr_rosidl",
+                         "../src/rosidl_generator_ada/gpr_rosidl/dl-ada",
+                         "../src/rosidl_generator_ada/gpr_rosidl/dl-ada/cstrings",
+                         "../src/rclada/gpr_rcl",
+                         "../src/rclada_tf2/gpr_tf2_ros",
+
+                         --  Auto imports generated during colcon build last
+                         "../install/rclada_common/share/gpr",
+                         "../install/rosidl_generator_ada/share/gpr",
+                         "../install/rclada/share/gpr"
+                        );
+
+   --  Root project files usable by clients
+
+   for Project_Files use (
+                          "../src/rosidl_generator_ada/gpr_generator/generator.gpr",
+                          "../src/rosidl_generator_ada/gpr_rosidl/rosidl.gpr",
+                          "../src/rclada/gpr_rcl/rcl.gpr",
+                          "../src/rclada/gpr_selftest/rcl_selftest.gpr",
+                          "../src/rclada_tf2/gpr_tf2_ros/tf2_ros.gpr"
+                         );
+
+end TF2dev;

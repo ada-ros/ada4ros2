@@ -16,3 +16,6 @@
 [submodule "src/rclada_fosdem20"]
 	path = src/rclada_fosdem20
 	url = https://github.com/ada-ros/rclada_fosdem20
+[submodule "src/rclada_tf2"]
+	path = src/rclada_tf2
+	url = https://github.com/ada-ros/rclada_tf2.git
