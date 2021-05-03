@@ -20,7 +20,8 @@ aggregate project TF2dev is
                          --  Auto imports generated during colcon build last
                          "../install/rclada_common/share/gpr",
                          "../install/rosidl_generator_ada/share/gpr",
-                         "../install/rclada/share/gpr"
+                         "../install/rclada/share/gpr",
+                         "../install/rclada_tf2/share/gpr"
                         );
 
    --  Root project files usable by clients
