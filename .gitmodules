@@ -22,3 +22,6 @@
 [submodule "src/tut_aeic21_priv"]
 	path = src/tut_aeic21_priv
 	url = git@github.com:mosteo/tutorial-aeic21-private.git
+[submodule "src/tutorial_aeic21"]
+	path = src/tutorial_aeic21
+	url = https://github.com/ada-ros/tutorial-aeic21.git
