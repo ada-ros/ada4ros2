@@ -16,14 +16,15 @@ Aggregate project Devtut is
                          "../src/rosidl_generator_ada/gpr_rosidl/dl-ada/cstrings",
                          "../src/rclada/gpr_rcl",
                          "../src/rclada_tf2/gpr_tf2_ros",
-                         "../src/tut_aeic21_priv/gpr_exercises",
+                         "../src/tutorial_aeic21/gpr_exercises",
+                         "../src/tutorial_aeic21/gpr_solutions",
 
                          --  Auto imports generated during colcon build last
                          "../install/rclada_common/share/gpr",
                          "../install/rosidl_generator_ada/share/gpr",
                          "../install/rclada/share/gpr",
                          "../install/rclada_tf2/share/gpr",
-                         "../install/tut_aeic21/share/gpr"
+                         "../install/tutorial_aeic21/share/gpr"
                         );
 
    --  Root project files usable by clients
@@ -34,7 +35,8 @@ Aggregate project Devtut is
                           "../src/rclada/gpr_rcl/rcl.gpr",
                           "../src/rclada/gpr_selftest/rcl_selftest.gpr",
                           "../src/rclada_tf2/gpr_tf2_ros/tf2_ros.gpr",
-                          "../src/tut_aeic21_priv/gpr_exercises/tut21_exercises.gpr"
+                          "../src/tutorial_aeic21/gpr_exercises/tut21_exercises.gpr",
+                          "../src/tutorial_aeic21/gpr_solutions/tut21_solutions.gpr"
                          );
 
 end Devtut;
