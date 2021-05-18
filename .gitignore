@@ -10,8 +10,6 @@ install_isolated
 lib
 log
 obj
-.vscode/
-.vscode/*
 
 .#*#
 .*.sw?
