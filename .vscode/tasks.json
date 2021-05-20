@@ -2,6 +2,14 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+            "label": "rclada compile current file",
+            "type": "shell",
+            "command": "source dev/setup.bash && gprbuild -ws -c -f -s -u -P dev/devtut.gpr ${file}",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+        {
             "label": "rclada clean & build all",
             "type": "shell",
             "command": "source dev/setup.bash && dev/build.sh",

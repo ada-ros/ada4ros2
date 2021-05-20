@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# We need source ones first, so when they're installed we still pick up the
+# proper ones for editing.
+src=$(find $PWD/src -name '*.gpr' | xargs -n1 dirname | sort -u | paste -sd ':')
+inst=$(find $PWD/install -name '*.gpr' | xargs -n1 dirname | sort -u | paste -sd ':')
+
+echo export GPR_PROJECT_PATH=\"${src}:${inst}\"
