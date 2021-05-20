@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "label": "rclada clean & build all",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/build.sh",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+		{
+            "label": "rclada update all",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/update.sh",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+		{
+            "label": "rclada build tutorials",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/build-package.sh tutorial_aeic21",
+			"problemMatcher": [
+				"$ada"
+			],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+	]
+}
