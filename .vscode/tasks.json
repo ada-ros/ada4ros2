@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-            "label": "rclada compile current file",
+            "label": "rclada compile current file (after successful complete build)",
             "type": "shell",
             "command": "source dev/setup.bash && gprbuild -ws -c -f -s -u -P dev/devtut.gpr ${file}",
 			"problemMatcher": [
@@ -12,7 +12,7 @@
         {
             "label": "rclada clean & build all",
             "type": "shell",
-            "command": "source dev/setup.bash && dev/build.sh",
+            "command": "source dev/setup.bash && dev/make.sh",
 			"problemMatcher": [
 				"$ada"
 			],
@@ -26,7 +26,7 @@
 			],
         },
 		{
-            "label": "rclada build tutorials",
+            "label": "rclada build tutorials only (after successful complete build)",
             "type": "shell",
             "command": "source dev/setup.bash && dev/build-package.sh tutorial_aeic21",
 			"problemMatcher": [
