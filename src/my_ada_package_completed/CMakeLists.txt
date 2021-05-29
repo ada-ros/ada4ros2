@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(my_ada_package)
+project(my_ada_package_completed)
 
 find_package(ament_cmake REQUIRED)
 find_package(rclada_common REQUIRED)
