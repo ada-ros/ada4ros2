@@ -20,5 +20,5 @@
 	path = src/rclada_tf2
 	url = https://github.com/ada-ros/rclada_tf2.git
 [submodule "src/tutorial_aeic21"]
-	path = src/tutorial_aeic21
+	path = src/tutorial
 	url = https://github.com/ada-ros/tutorial-aeic21.git
