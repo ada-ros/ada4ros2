@@ -2,6 +2,7 @@ bin
 build
 build_isolated
 cmake-build-*
+colcon.env
 gnatinspect*
 gpsauto*
 .idea
