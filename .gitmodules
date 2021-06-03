@@ -22,3 +22,6 @@
 [submodule "src/tutorial_aeic21"]
 	path = src/tutorial
 	url = https://github.com/ada-ros/tutorial-aeic21.git
+[submodule "src/webots_ros2_p3at"]
+	path = src/webots_ros2_p3at
+	url = https://github.com/dantard/webots_ros2_p3at.git
