@@ -17,6 +17,7 @@ Aggregate project Devtut is
                          "../src/rclada/gpr_rcl",
                          "../src/rclada_examples",
                          "../src/rclada_tf2/gpr_tf2_ros",
+                         "../src/tutorial/common",
                          "../src/tutorial/exercises",
                          "../src/tutorial/solutions",
 
@@ -24,7 +25,9 @@ Aggregate project Devtut is
                          "../install/rclada_common/share/gpr",
                          "../install/rosidl_generator_ada/share/gpr",
                          "../install/rclada/share/gpr",
+                         "../install/rclada_examples/share/gpr",
                          "../install/rclada_tf2/share/gpr",
+                         "../install/tutorial_common/share/gpr",
                          "../install/tutorial_exercises/share/gpr",
                          "../install/tutorial_solutions/share/gpr"
                         );
@@ -38,6 +41,7 @@ Aggregate project Devtut is
                           "../src/rclada/gpr_selftest/rcl_selftest.gpr",
                           "../src/rclada_examples/examples.gpr",
                           "../src/rclada_tf2/gpr_tf2_ros/tf2_ros.gpr",
+                          "../src/tutorial/common/tutorial_common.gpr",
                           "../src/tutorial/exercises/tutorial_exercises.gpr",
                           "../src/tutorial/solutions/tutorial_solutions.gpr"
                          );
