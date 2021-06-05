@@ -26,9 +26,17 @@
 			],
         },
 		{
-            "label": "rclada build tutorials only (after successful complete build)",
+            "label": "rclada build tutorials (with solutions) only (after successful complete build)",
             "type": "shell",
-            "command": "source dev/setup.bash && dev/build-package.sh tutorial_aeic21",
+            "command": "source dev/setup.bash && dev/build-package.sh tutorial_common tutorial_exercises tutorial_solutions",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+        {
+            "label": "rclada build tutorials (exercises only) (after successful complete build)",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/build-package.sh tutorial_exercises",
 			"problemMatcher": [
 				"$ada"
 			],
