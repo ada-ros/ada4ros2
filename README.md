@@ -134,9 +134,11 @@ These statuses refer to the high-level binding; the low-level one is always gene
     - 🟩 `RCL.Calendar`: Complete 
     - 🟩 `RCL.Executors`: Complete 
     - 🟩 `RCL.Graph`: Complete 
-    - 🟨 `RCL.Options`: Partial (Only QoS predefined profiles)
+    - 🟨 `RCL.Options`: Partial (only QoS predefined profiles)
     - 🟩 `RCL.Timers`: Complete 
     - 🟩 `RCL.Wait`: Complete 
+- Sibling projects:
+    - 🟨 `RCL.TF2`: Partial (query transform existence, transform single points)
 
 #### ROSIDL message support for Ada
 
