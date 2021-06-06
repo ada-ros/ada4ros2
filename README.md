@@ -129,6 +129,7 @@ These statuses refer to the high-level binding; the low-level one is always gene
     - 🟩 `RCL.Clients`: Complete 
     - 🟩 `RCL.Services`: Complete 
     - 🟨 `RCL.Actions`: Partial  (thin binding only ATM)
+    - 🟥 `RCL.Parameters`: Pending
 - Support:
     - 🟩 `RCL.Allocators`: Complete 
     - 🟩 `RCL.Calendar`: Complete 
@@ -160,12 +161,11 @@ These statuses refer to the high-level binding; the low-level one is always gene
 - `ament_cmake` build type:
   - 🟩 Stand-alone executables: Complete
   - 🟩 Export Ada libraries to Ada clients: Complete 
-  - 🟨 Export Ada libraries to C-compatible clients: Manual 
+  - 🟨 Export Ada libraries to C-compatible clients: Manual via plain CMake 
 
 ## API documentation
 
-GNATdoc-generated documents can be found at https://ada-ros.github.io/ada4ros2/
-for `RCL`, `RCL.TF2`, `ROSIDL` and their dependencies.
+GNATdoc-generated documents can be found at https://ada-ros.github.io/ada4ros2/ for `RCL`, `RCL.TF2`, `ROSIDL` and their dependencies.
 
 ## Extras
 
