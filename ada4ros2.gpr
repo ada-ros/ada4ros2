@@ -20,8 +20,7 @@ aggregate project Ada4ROS2 is
                          "install/rclada_common/share/gpr",
                          "install/rosidl_generator_ada/share/gpr",
                          "install/rclada/share/gpr",
-                         "install/rclada_examples/share/gpr",
-                         "install/rclada_fosdem20/share/gpr"
+                         "install/rclada_examples/share/gpr"
                         );
 
    --  Root project files usable by clients
@@ -32,8 +31,7 @@ aggregate project Ada4ROS2 is
                           "src/rclada/gpr_rcl/rcl.gpr",
                           "src/rclada/gpr_selftest/rcl_selftest.gpr",
                           "src/rclada_examples/examples.gpr",
-                          "src/rclada_client_skeleton/ada_project.gpr",
-                          "src/rclada_fosdem20/fosdem20.gpr"
+                          "src/rclada_client_skeleton/ada_project.gpr"
                          );
 
 end Ada4ROS2;

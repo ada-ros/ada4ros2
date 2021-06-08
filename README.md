@@ -123,48 +123,49 @@ All examples provided use exclusively the `RCL.*` and `ROSIDL.*` hierarchies.
 These statuses refer to the high-level binding; the low-level one is always generated.
 
 - Main features:
-    - `RCL.Nodes`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Publishers`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Subscriptions`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Clients`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Services`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Actions`: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+) (thin binding only ATM)
+    - 🟩 `RCL.Nodes`: Complete 
+    - 🟩 `RCL.Publishers`: Complete 
+    - 🟩 `RCL.Subscriptions`: Complete 
+    - 🟩 `RCL.Clients`: Complete 
+    - 🟩 `RCL.Services`: Complete 
+    - 🟨 `RCL.Actions`: Partial  (thin binding only ATM)
+    - 🟥 `RCL.Parameters`: Pending
 - Support:
-    - `RCL.Allocators`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Calendar`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Executors`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Graph`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Options`: Partial ![yellow](https://placehold.it/8/ffbb00/000000?text=+) (always default QoS at present)
-    - `RCL.Timers`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - `RCL.Wait`: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
+    - 🟩 `RCL.Allocators`: Complete 
+    - 🟩 `RCL.Calendar`: Complete 
+    - 🟩 `RCL.Executors`: Complete 
+    - 🟩 `RCL.Graph`: Complete 
+    - 🟨 `RCL.Options`: Partial (only QoS predefined profiles)
+    - 🟩 `RCL.Timers`: Complete 
+    - 🟩 `RCL.Wait`: Complete 
+- Sibling projects:
+    - 🟨 `RCL.TF2`: Partial (query transform existence, transform single points)
 
 #### ROSIDL message support for Ada
 
 - Dynamic access (through introspection):
-    - Typesupport: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Simple types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Nested types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Array types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Matrix types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
+    - 🟩 Typesupport: Complete 
+    - 🟩 Simple types: Complete 
+    - 🟩 Nested types: Complete 
+    - 🟩 Array types: Complete 
+    - 🟩 Matrix types: Complete 
 - Static access (through generated types):
-    - Typesupport: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Simple types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Nested types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Array types: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-    - Matrix types: Deprecated by ROS2 in favor of semantically-appropriate custom messages, although available through their statically generated types.
+    - 🟩 Typesupport: Complete 
+    - 🟩 Simple types: Complete 
+    - 🟩 Nested types: Complete 
+    - 🟩 Array types: Complete 
+    - 🟩 Matrix types: Deprecated by ROS2 in favor of semantically-appropriate custom messages, although available through their statically generated types.
 
 #### ColCon integration
 
-- `ament_cmake` build type: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-  - Stand-alone executables: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-  - Export Ada libraries to Ada clients: Complete ![green](https://placehold.it/8/00aa00/000000?text=+)
-  - Export Ada libraries to C-compatible clients: Manual ![yellow](https://placehold.it/8/ffbb00/000000?text=+)
+- `ament_cmake` build type:
+  - 🟩 Stand-alone executables: Complete
+  - 🟩 Export Ada libraries to Ada clients: Complete 
+  - 🟨 Export Ada libraries to C-compatible clients: Manual via plain CMake 
 
-<!--
-![green](https://placehold.it/8/00aa00/000000?text=+)
-![yellow](https://placehold.it/8/ffbb00/000000?text=+)
-![red](https://placehold.it/8/ff0000/000000?text=+)
--->
+## API documentation
+
+GNATdoc-generated documents can be found at https://ada-ros.github.io/ada4ros2/ for `RCL`, `RCL.TF2`, `ROSIDL` and their dependencies.
 
 ## Extras
 

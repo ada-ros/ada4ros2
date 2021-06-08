@@ -1,0 +1,6 @@
+# Generating a dependency graph from a subfolder of a package:
+cmake -DCMAKE_INSTALL_PREFIX:PATH=local .. --graphviz=foo.dot
+dot -Tpng -o foo.png foo.dot
+
+# To debug the dependency graph in a package, add in its CMakeFiles.txt:
+set_property(GLOBAL PROPERTY GLOBAL_DEPENDS_DEBUG_MODE 1)

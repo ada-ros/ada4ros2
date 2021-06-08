@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gs=$(find ~/opt/gnat -wholename *bin/gnatstudio | tail -1)
+source <(./printenv_ada)
+$gs "$@" &

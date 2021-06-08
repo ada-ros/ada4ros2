@@ -16,3 +16,12 @@
 [submodule "src/rclada_fosdem20"]
 	path = src/rclada_fosdem20
 	url = https://github.com/ada-ros/rclada_fosdem20
+[submodule "src/rclada_tf2"]
+	path = src/rclada_tf2
+	url = https://github.com/ada-ros/rclada_tf2.git
+[submodule "src/tutorial_aeic21"]
+	path = src/tutorial
+	url = https://github.com/ada-ros/tutorial-aeic21.git
+[submodule "src/webots_ros2_p3at"]
+	path = src/webots_ros2_p3at
+	url = https://github.com/dantard/webots_ros2_p3at.git

@@ -1,0 +1,49 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "label": "rclada compile current file (after successful complete build)",
+            "type": "shell",
+            "command": "source dev/setup.bash && gprbuild -ws -c -f -s -u -P dev/devtut.gpr ${file}",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+        {
+            "label": "rclada clean & build all",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/make.sh",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+		{
+            "label": "rclada update all",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/update.sh",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+		{
+            "label": "rclada build tutorials (with solutions) only (after successful complete build)",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/build-package.sh tutorial_common tutorial_exercises tutorial_solutions",
+			"problemMatcher": [
+				"$ada"
+			],
+        },
+        {
+            "label": "rclada build tutorials (exercises only) (after successful complete build)",
+            "type": "shell",
+            "command": "source dev/setup.bash && dev/build-package.sh tutorial_exercises",
+			"problemMatcher": [
+				"$ada"
+			],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+	]
+}

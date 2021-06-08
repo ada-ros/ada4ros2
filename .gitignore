@@ -2,6 +2,7 @@ bin
 build
 build_isolated
 cmake-build-*
+colcon.env
 gnatinspect*
 gpsauto*
 .idea
@@ -10,8 +11,6 @@ install_isolated
 lib
 log
 obj
-.vscode/
-.vscode/*
 
 .#*#
 .*.sw?
