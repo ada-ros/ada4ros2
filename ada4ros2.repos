@@ -3,16 +3,20 @@ repositories:
   ros2/rclada:
     type: git
     url: https://github.com/ada-ros/rclada.git
-    version: master
+    version: foxy
   ros2/rclada_common:
     type: git
     url: https://github.com/ada-ros/rclada_common.git
-    version: master
+    version: foxy
   ros2/rclada_examples:
     type: git
     url: https://github.com/ada-ros/rclada_examples.git
-    version: master
+    version: foxy
+  ros2/rclada_tf2:
+    type: git
+    url: https://github.com/ada-ros/rclada_tf2.git
+    version: foxy
   ros2/rosidl_generator_ada:
     type: git
     url: https://github.com/ada-ros/rosidl_generator_ada.git
-    version: master
+    version: foxy

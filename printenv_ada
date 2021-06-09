@@ -1,8 +1,17 @@
 #!/bin/bash
 
+# This script detects all source projects in the ada4ros2 sources, so they are
+# picked up by gprbuild *before* the installed versions. This way they can be
+# edited after a successful colcon build and setup.bash (that will make the
+# installed and generated projects available).
+
 # We need source ones first, so when they're installed we still pick up the
 # proper ones for editing.
 src=$(find $PWD/src -name '*.gpr' | xargs -n1 dirname | sort -u | paste -sd ':')
-inst=$(find $PWD/install -name '*.gpr' | xargs -n1 dirname | sort -u | paste -sd ':')
 
-echo export GPR_PROJECT_PATH=\"${src}:${inst}\"
+# This is no longer necessary if done by setup.bash
+if [ "$RCLADA_EXPORT" != "TRUE" ]; then
+    inst=$(find $PWD/install -name '*.gpr' | xargs -n1 dirname | sort -u | paste -sd ':')
+fi
+
+echo export GPR_PROJECT_PATH=\"${src}:${inst}:${GPR_PROJECT_PATH}\"
