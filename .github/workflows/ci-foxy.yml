@@ -29,6 +29,9 @@ jobs:
       with:
         required-ros-distributions: foxy
 
+    - name: Add additional required packages
+      run: sudo apt update && sudo apt install ros-foxy-test-msgs
+
     - name: Build
       run: >
         source /opt/ros/foxy/setup.bash && 
