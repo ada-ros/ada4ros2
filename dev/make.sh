@@ -6,6 +6,7 @@ fi
 
 ./dev/uberclean.sh
 unset AMENT_PREFIX_PATH
+unset GPR_PROJECT_PATH
 unset LD_LIBRARY_PATH
 source ./dev/setup.bash
 colcon build $up_to --event-handlers console_direct+
