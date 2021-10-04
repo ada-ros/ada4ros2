@@ -1,4 +1,4 @@
-[![Foxy CI](https://github.com/ada-ros/ada4ros2/workflows/Foxy%20CI/badge.svg)](https://github.com/ada-ros/ada4ros2/actions)
+[![Foxy CI](https://github.com/ada-ros/ada4ros2/workflows/Foxy%20CI/badge.svg)](https://github.com/ada-ros/ada4ros2/actions) [![Join the chat at https://gitter.im/Ada-Open-Source-Projects/RCLAda](https://badges.gitter.im/Ada-Open-Source-Projects/RCLAda.svg)](https://gitter.im/Ada-Open-Source-Projects/RCLAda?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # ada4ros2
 Main repository of the RCLAda project. Currently available for Ubuntu 20.04 LTS and ROS2 Dashing/Foxy.
