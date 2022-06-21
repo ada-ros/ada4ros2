@@ -1,11 +1,11 @@
-name: Foxy CI
+name: LTS CI
 
 on:
   schedule:
     - cron: "0 4 1-7 * 1"
     # First monday of the month, at 4am
   push:
-    branches: [ foxy ]
+    branches: [ foxy humble ]
   pull_request:
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
 
     - name: Build
       run: >
-        source /opt/ros/foxy/setup.bash && 
+        source /opt/ros/foxy/setup.bash &&
         colcon build --event-handlers console_direct+ --executor sequential
 
     - name: Run tests
