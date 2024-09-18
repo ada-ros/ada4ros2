@@ -1,4 +1,4 @@
-[![Foxy CI](https://github.com/ada-ros/ada4ros2/workflows/Foxy%20CI/badge.svg)](https://github.com/ada-ros/ada4ros2/actions) [![Join the chat at https://gitter.im/Ada-Open-Source-Projects/RCLAda](https://badges.gitter.im/Ada-Open-Source-Projects/RCLAda.svg)](https://gitter.im/Ada-Open-Source-Projects/RCLAda?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Jazzy CI](https://github.com/ada-ros/ada4ros2/workflows/LTS%20CI/badge.svg)](https://github.com/ada-ros/ada4ros2/actions) [![Join the chat at https://gitter.im/Ada-Open-Source-Projects/RCLAda](https://badges.gitter.im/Ada-Open-Source-Projects/RCLAda.svg)](https://gitter.im/Ada-Open-Source-Projects/RCLAda?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # ada4ros2
 Main repository of the RCLAda project. Currently available for Ubuntu 20.04 LTS and ROS2 Dashing/Foxy.
@@ -130,45 +130,45 @@ All examples provided use exclusively the `RCL.*` and `ROSIDL.*` hierarchies.
 These statuses refer to the high-level binding; the low-level one is always generated.
 
 - Main features:
-    - 🟩 `RCL.Nodes`: Complete 
-    - 🟩 `RCL.Publishers`: Complete 
-    - 🟩 `RCL.Subscriptions`: Complete 
-    - 🟩 `RCL.Clients`: Complete 
-    - 🟩 `RCL.Services`: Complete 
+    - 🟩 `RCL.Nodes`: Complete
+    - 🟩 `RCL.Publishers`: Complete
+    - 🟩 `RCL.Subscriptions`: Complete
+    - 🟩 `RCL.Clients`: Complete
+    - 🟩 `RCL.Services`: Complete
     - 🟨 `RCL.Actions`: Partial  (thin binding only ATM)
     - 🟥 `RCL.Parameters`: Pending
 - Support:
-    - 🟩 `RCL.Allocators`: Complete 
-    - 🟩 `RCL.Calendar`: Complete 
-    - 🟩 `RCL.Executors`: Complete 
-    - 🟩 `RCL.Graph`: Complete 
+    - 🟩 `RCL.Allocators`: Complete
+    - 🟩 `RCL.Calendar`: Complete
+    - 🟩 `RCL.Executors`: Complete
+    - 🟩 `RCL.Graph`: Complete
     - 🟨 `RCL.Options`: Partial (only QoS predefined profiles)
-    - 🟩 `RCL.Timers`: Complete 
-    - 🟩 `RCL.Wait`: Complete 
+    - 🟩 `RCL.Timers`: Complete
+    - 🟩 `RCL.Wait`: Complete
 - Sibling projects:
     - 🟨 `RCL.TF2`: Partial (query transform existence, transform single points)
 
 #### ROSIDL message support for Ada
 
 - Dynamic access (through introspection):
-    - 🟩 Typesupport: Complete 
-    - 🟩 Simple types: Complete 
-    - 🟩 Nested types: Complete 
-    - 🟩 Array types: Complete 
-    - 🟩 Matrix types: Complete 
+    - 🟩 Typesupport: Complete
+    - 🟩 Simple types: Complete
+    - 🟩 Nested types: Complete
+    - 🟩 Array types: Complete
+    - 🟩 Matrix types: Complete
 - Static access (through generated types):
-    - 🟩 Typesupport: Complete 
-    - 🟩 Simple types: Complete 
-    - 🟩 Nested types: Complete 
-    - 🟩 Array types: Complete 
+    - 🟩 Typesupport: Complete
+    - 🟩 Simple types: Complete
+    - 🟩 Nested types: Complete
+    - 🟩 Array types: Complete
     - 🟩 Matrix types: Deprecated by ROS2 in favor of semantically-appropriate custom messages, although available through their statically generated types.
 
 #### ColCon integration
 
 - `ament_cmake` build type:
   - 🟩 Stand-alone executables: Complete
-  - 🟩 Export Ada libraries to Ada clients: Complete 
-  - 🟨 Export Ada libraries to C-compatible clients: Manual via plain CMake 
+  - 🟩 Export Ada libraries to Ada clients: Complete
+  - 🟨 Export Ada libraries to C-compatible clients: Manual via plain CMake
 
 ## API documentation
 
